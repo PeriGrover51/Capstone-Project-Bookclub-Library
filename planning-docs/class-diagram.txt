@@ -1,0 +1,84 @@
+Models:
+User ( + whatever Spring Security needs for setup)
+- id
+- username
+- password
+
+Book
+- id int
+- title String
+- author String
+- genre String
+- whenRead LocalDate
+- link String
+- imgUrl String
+
+Session
+- id int
+- book Book
+- readingGoal String
+- sessionDate LocalDate
+- sessionNotes String
+
+Nomination
+- id int
+- title String
+- author String
+- genre String
+- link String
+- imgUrl String
+
+Vote
+- id int
+- user User
+- nomination Nomination
+- score int (1-5)
+
+
+*should there be an extra VoteTotal class with only nominationId (or Nomination reference) and int totalVotes?
+*that would make it easier to tally votes instead of trying to count every Vote score individually?
+*maybe map to a Map<nominationId, totalVotes> for the frontend to use (for each nom, lookup id + post totalVotes in DOM)
+
+
+Repositories:
+BookRepo
+
+SessionRepo
+
+NominationRepo
+
+UserRepo
+
+VoteRepo
+
+
+
+Service:
+BookService
+
+SessionService
+
+NominationService
+
+UserService
+
+VoteService
+
+
+
+Controller:
+BookController
+
+SessionController
+
+NominationController
+
+UserController
+
+VoteController
+
+
+Stretch Goals:
+- Favorite (model)
+
+- add 'rating' to Book class
