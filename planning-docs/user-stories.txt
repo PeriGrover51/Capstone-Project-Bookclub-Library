@@ -1,7 +1,7 @@
 User Stories:
 - While logged out:
     - Users can sign up as a member and log in
-    - Users can view a library of previous books read in the club, with general info and club ratings
+    - Users can view a library of previous books read in the club, with general info
     - Users can view past sessions or the current session page for info on the current book and meeting / session details
 - While logged in:
     - Members can add or edit books in the library
@@ -10,6 +10,7 @@ User Stories:
     - Members can add nominations
     - Members can edit or delete their own nominations
     - Members can vote on all current nominations (on a 1-5 scale). They can edit their votes as many times as they want, but can only cast 1 vote per nomination.
+    - Members can click 'View Final Score' on voting page that will reveal the vote winner
 Other:
     - The library is allowed to hold duplicates as long as the date (when it was read) is different, since sometimes bookclub will re-read books.
 

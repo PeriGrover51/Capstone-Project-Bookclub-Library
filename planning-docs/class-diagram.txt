@@ -1,3 +1,4 @@
+Models:
 User ( + whatever Spring Security needs for setup)
 - id
 - username
@@ -39,7 +40,45 @@ Vote
 *maybe map to a Map<nominationId, totalVotes> for the frontend to use (for each nom, lookup id + post totalVotes in DOM)
 
 
+Repositories:
+BookRepo
+
+SessionRepo
+
+NominationRepo
+
+UserRepo
+
+VoteRepo
+
+
+
+Service:
+BookService
+
+SessionService
+
+NominationService
+
+UserService
+
+VoteService
+
+
+
+Controller:
+BookController
+
+SessionController
+
+NominationController
+
+UserController
+
+VoteController
+
+
 Stretch Goals:
-- Favorite (class)
+- Favorite (model)
 
 - add 'rating' to Book class

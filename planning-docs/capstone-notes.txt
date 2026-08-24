@@ -93,4 +93,11 @@ Controller Endpoints:
     - For adding favorites: POST "/api/books/myBooks/{id}" (needs auth)
     - For other members' favorites: GET "api/user/{userid}"
 
-Class Diagram:
+
+order of operations:
+- user (spring security setup)
+- books
+- sessions
+- nominations + voting
+
+stretch goals:
