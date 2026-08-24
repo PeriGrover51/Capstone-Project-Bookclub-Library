@@ -1,0 +1,30 @@
+Controller Endpoints:
+- USER: "/api/user"
+    - user login: POST "/api/user/login"
+    - user signup: POST "/api/user"
+- Books: "/api/books"
+    - view library / get all: GET "/api/books"
+    - get single book: GET "/api/books/{id}"
+    - edit book: PUT "/api/books/{id}" (needs authentication)
+    - add book: POST "/api/books" (needs authentication)
+- Sessions: "/api/sessions"
+    - view all: GET "api/sessions"
+    - view current: GET "api/sessions/current"
+    - edit: PUT "/api/sessions/{id}" (needs auth)
+    - add: POST "/api/sessions" (needs auth)
+- Nominations: "/api/nominations"
+    - view all: GET {url}
+    - edit: PUT {url}/{id}
+    - add: POST {url} (userId in auth header)
+    - delete: DELETE {url}
+- Votes: "/api/votes"
+    - edit / add: PUT "/api/votes/{bookId}" (userId in auth header)
+    - get votes: GET {url}
+        *getting votes should use a COUNT(*) ... GROUP BY bookId and return the total votes for each bookId;
+
+(Stretch Goal)
+- User favorites:
+    - For members page: GET "/api/user"
+    - For viewing favorites: GET "/api/books/myBooks" (needs authentication)
+    - For adding favorites: POST "/api/books/myBooks/{id}" (needs auth)
+    - For other members' favorites: GET "api/user/{userid}"

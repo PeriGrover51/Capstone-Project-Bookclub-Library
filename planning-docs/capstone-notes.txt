@@ -1,0 +1,96 @@
+Bookclub's Library:
+- All previous books we've read
+    - title, author, genre, date it was read, (club rating?), Goodreads link
+    - must be logged in to edit / add / delete
+    - can be viewed without logging in
+    - Viewed in a card format
+- Current Session / Book
+    - info of current book we're reading
+    - next club session / datetime
+    - chapters / pages to read for next session
+    - session / book / misc notes (such as, where to find epub, movie night, etc)
+    - must be logged in to edit / add / delete
+    - can be viewed without logging in
+- Nominations
+    - must be logged in to view all nominations
+    - each user can add / edit / delete their own book nominations
+    - nomination info: book info + nominator
+    - 'Clear Current Nominations' will delete all current nominations
+- Voting
+    - must be logged in to vote / view
+    - on same page / frontend section as nominations?
+    - A user can vote on each book 1 time, scale of 1-5
+    - 'Show Vote' button will calculate + present each book's score
+- Extra / Misc:
+    - In the Voting page, a 'Select Winner' button (shown only after 'End Vote') will go to the 'add/edit Current Session' form with that book's data prepopulated
+    - In the Current Session / Book page, a 'Finish Book' button will automatically add the current book's info to the library (with the date / timestamp being the current / final session)
+- Stretch Goals:
+    - Members can rate past books, with a cumulative score as part of that book's card info
+    - Members can 'favorite' past books + each club member's favorites can be viewed (visible to all or members only?)
+
+
+Outside-of-curriculum tech ideas:
+- Hibernate
+- real jwt / bcrypt / spring security
+- CSS library (materialize, tailwind)
+
+
+User Stories:
+- While logged out:
+    - Users can sign up as a member and log in
+    - Users can view a library of previous books read in the club, with general info and club ratings
+    - Users can view past sessions or the current session page for info on the current book and meeting / session details
+- While logged in:
+    - Members can add or edit books in the library
+    - Members can add or edit past sessions or the current session
+    - Members can view nominations of books to be voted on for the next book to read + the member who nominated them
+    - Members can add nominations
+    - Members can edit or delete their own nominations
+    - Members can vote on all current nominations (on a 1-5 scale). They can edit their votes as many times as they want, but can only cast 1 vote per nomination.
+Other:
+    - The library is allowed to hold duplicates as long as the date (when it was read) is different, since sometimes bookclub will re-read books.
+
+Stretch Goals:
+- Members can favorite or unfavorite books in the library
+- Members can view their favorites or other members' favorites
+- Voting / Nominations page has a 'Select for new Session' button that creates a new library book entry + navigates to 'add session' page with that book's info prepopulated
+- Voting / Nominations page has a 'Clear All' button that deletes all current nominations
+- Votes are hidden until a member clicks the 'Reveal Votes' button, which displays the votes for each nomination and displays them from highest->lowest
+- Members can rate books in the library
+- Users can search / sort / filter the library based on rating, keyword, date when read, etc.
+- Members can post comments on books that are viewable by all users - comments are displayed when the book is clicked on
+    - Display could be a sidebar, modal, etc...
+- library is paginated
+
+
+
+Controller Endpoints:
+- USER: "/api/user"
+    - user login: POST "/api/user/login"
+    - user signup: POST "/api/user"
+- Books: "/api/books"
+    - view library / get all: GET "/api/books"
+    - get single book: GET "/api/books/{id}"
+    - edit book: PUT "/api/books/{id}" (needs authentication)
+    - add book: POST "/api/books" (needs authentication)
+- Sessions: "/api/sessions"
+    - view all: GET "api/sessions"
+    - view current: GET "api/sessions/current"
+    - edit: PUT "/api/sessions/{id}" (needs auth)
+    - add: POST "/api/sessions" (needs auth)
+- Nominations: "/api/nominations"
+    - view all
+    - edit
+    - add
+    - delete
+- Votes: "/api/votes"
+    - edit / add: PUT "/api/votes/{bookId}" (userId in auth header)
+
+(Stretch Goal)
+- User favorites:
+    - For members page: GET "/api/user"
+    - For viewing favorites: GET "/api/books/myBooks" (needs authentication)
+    - For adding favorites: POST "/api/books/myBooks/{id}" (needs auth)
+    - For other members' favorites: GET "api/user/{userid}"
+
+Class Diagram:
