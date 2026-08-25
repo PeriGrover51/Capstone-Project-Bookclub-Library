@@ -39,29 +39,9 @@ public class SecurityConfig {
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider(); //for connecting with a database
         provider.setPasswordEncoder(NoOpPasswordEncoder.getInstance()); //no pw encoder, change to bcrypt later
-        provider.setUserDetailsService(userDetailsService);
+        provider.setUserDetailsService(userDetailsService); //uses our custom userdetailsservice (MyUserDetailsService)
         return provider;
     }
-
-
-//    @Bean
-//    public UserDetailsService userDetailsService() {
-//
-//        UserDetails user1 = User
-//                .withDefaultPasswordEncoder()
-//                .username("user1")
-//                .password("pw1")
-//                .roles("USER")
-//                .build();
-//
-//        UserDetails user2 = User
-//                .withDefaultPasswordEncoder() //pw encryption, change to bcrypt later
-//                .username("user2")
-//                .password("pw2")
-//                .roles("ADMIN") //don't use in this app, just stick with "USER"?
-//                .build();
-//
-//        return new InMemoryUserDetailsManager(user1, user2);
-//    }
+    
 
 }
