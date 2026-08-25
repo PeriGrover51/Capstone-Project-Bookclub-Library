@@ -17,6 +17,9 @@ public class UserService {
     private UserRepository repository;
 
     @Autowired
+    private JWTService jwtService;
+
+    @Autowired
     AuthenticationManager authManager;
 
     private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(HASH_STRENGTH); //included in springsec
@@ -33,7 +36,7 @@ public class UserService {
                 authManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword())); //gives authentication obj
 
         if (authentication.isAuthenticated()) {
-            return "Success";
+            return jwtService.generateToken(user.getUsername()); //generates a jwt token upon login success
         }
 
         return "Fail";
