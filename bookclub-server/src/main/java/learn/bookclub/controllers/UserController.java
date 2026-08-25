@@ -1,10 +1,14 @@
 package learn.bookclub.controllers;
 
 import learn.bookclub.models.User;
+import learn.bookclub.services.Result;
 import learn.bookclub.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/user")
@@ -15,18 +19,29 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/register")
-    public User register (@RequestBody User user) {
+    public ResponseEntity<?> register (@RequestBody User user) {
+        Result<User> result = userService.register(user);
 
-        //TODO: change return type to ResponseEntity
-
-        return userService.register(user);
+        if (!result.isSuccess()) {
+            return ErrorResponse.build(result);
+        }
+        return new ResponseEntity<>(result.getpayload(), HttpStatus.CREATED);
     }
 
     @PostMapping("/login")
-    public String login (@RequestBody User user) {
+    public ResponseEntity<?> login (@RequestBody User user) {
+        Result<String> result = userService.verify(user);
 
-        //TODO: change return type to ResponseEntity
+        if (!result.isSuccess()) {
+            return ErrorResponse.build(result);
+        }
 
-        return userService.verify(user);
+        return ResponseEntity.ok(Map.of(
+               "token", result.getpayload(),
+               "user", Map.of(
+                       "id", user.getUserId(),
+                        "username", user.getUsername()
+                )
+        ));
     }
 }
