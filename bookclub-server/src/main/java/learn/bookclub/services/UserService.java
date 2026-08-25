@@ -25,7 +25,6 @@ public class UserService {
     private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(HASH_STRENGTH); //included in springsec
 
     public Result<User> register(User user) {
-        //TODO: change to Result<User>, add validation
         //create new user
         Result<User> result = new Result<>();
 
@@ -52,15 +51,21 @@ public class UserService {
         return result;
     }
 
-    public String verify(User user) {
+    public Result<String> verify(User user) {
         //TODO: change to Result<User>
+        Result<String> result = new Result<>();
+
         Authentication authentication =
                 authManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword())); //gives authentication obj
 
+        //user is valid / in the db
         if (authentication.isAuthenticated()) {
-            return jwtService.generateToken(user.getUsername()); //generates a jwt token upon login success
+            result.setpayload(jwtService.generateToken(user.getUsername())); //generates a jwt token upon login success
+            //return jwtService.generateToken(user.getUsername());
+        } else {
+            result.addErrorMessage("Failed to login - not in db or wrong username/pw", ResultType.NOT_FOUND);
         }
 
-        return "Fail";
+        return result;
     }
 }

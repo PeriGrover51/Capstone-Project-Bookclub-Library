@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/user")
 @CrossOrigin
@@ -20,8 +22,6 @@ public class UserController {
     public ResponseEntity<?> register (@RequestBody User user) {
         Result<User> result = userService.register(user);
 
-        //TODO: change return type to ResponseEntity
-
         if (!result.isSuccess()) {
             return ErrorResponse.build(result);
         }
@@ -29,11 +29,19 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login (@RequestBody User user) {
+    public ResponseEntity<?> login (@RequestBody User user) {
+        Result<String> result = userService.verify(user);
 
-        //TODO: change return type to ResponseEntity
-        //TODO: make sure that this returns the jwt token and the user for frontend to use
+        if (!result.isSuccess()) {
+            return ErrorResponse.build(result);
+        }
 
-        return userService.verify(user);
+        return ResponseEntity.ok(Map.of(
+               "token", result.getpayload(),
+               "user", Map.of(
+                       "id", user.getUserId(),
+                        "username", user.getUsername()
+                )
+        ));
     }
 }
