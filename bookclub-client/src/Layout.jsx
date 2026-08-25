@@ -1,14 +1,14 @@
 import { Link, Outlet } from "react-router-dom";
+import Nav from "./Nav";
 
 export default function Layout () {
     return (
-    <>
-        <h4>hello from Layour</h4>
-        <h4>Nav goes in here</h4>
-        <main>
+    <div className="flex">
+        <Nav/>
+        <main className="flex-1 p-6">
             <Outlet />
         </main>
-    </>
+    </div>
     )
     
 }
