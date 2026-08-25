@@ -63,7 +63,7 @@ public class SecurityConfig {
         return config.getAuthenticationManager();
     }
 
-    //TODO: add cors config to allow React client to make requests
+    //TODO: add cors config to allow React client to make requests?
 
 
 }

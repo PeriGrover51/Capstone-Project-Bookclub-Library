@@ -24,10 +24,32 @@ public class UserService {
 
     private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(HASH_STRENGTH); //included in springsec
 
-    public User register(User user) {
+    public Result<User> register(User user) {
         //TODO: change to Result<User>, add validation
-        user.setPassword(encoder.encode(user.getPassword())); //encodes pw before saving to repo
-        return repository.create(user);
+        //create new user
+        Result<User> result = new Result<>();
+
+        //validate user is valid
+        if (user.getUsername().isBlank()) {
+            result.addErrorMessage("Username cannot be blank", ResultType.INVALID);
+        }
+
+        if (user.getPassword().isBlank()) {
+            result.addErrorMessage("Password cannot be blank", ResultType.INVALID);
+        }
+
+        if (repository.findByUsername(user.getUsername()) != null) {
+            result.addErrorMessage("Username is already taken", ResultType.INVALID);
+        }
+
+        if (result.isSuccess()) {
+            user.setPassword(encoder.encode(user.getPassword())); //encodes pw before saving to repo
+            User registeredUser = repository.create(user);
+            result.setpayload(registeredUser);
+        }
+
+
+        return result;
     }
 
     public String verify(User user) {
