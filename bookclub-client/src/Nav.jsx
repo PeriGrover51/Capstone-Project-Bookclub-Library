@@ -24,8 +24,8 @@ export default function Nav() {
 
                     {!user && (
                         <>
-                        <NavItem to="/login">Login</NavItem>
-                        <NavItem to="/signup">Sign up</NavItem>
+                        <NavItem to="/user/login">Login</NavItem>
+                        <NavItem to="user/register">Sign up</NavItem>
                         </>
                     )}
                 </nav>
