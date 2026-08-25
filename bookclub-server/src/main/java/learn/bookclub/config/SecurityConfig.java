@@ -12,6 +12,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
@@ -19,6 +20,8 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration //tell Spring this is a config file, and has to search for configs here
 @EnableWebSecurity //tell Spring Security to not use default flow, but instead use the flow here
 public class SecurityConfig {
+
+    private final int HASH_STRENGTH = 12;
 
     @Autowired
     private UserDetailsService userDetailsService;
@@ -29,6 +32,7 @@ public class SecurityConfig {
         return http.csrf(customizer -> customizer.disable()) //disable csrf - make http stateless instead
                 .authorizeHttpRequests(request ->
                     request.anyRequest().authenticated()) //no access to any request unless authenticated
+                    //TODO: change to allow certain requests without authentication (login, register, some read-only pages)
                 .httpBasic(Customizer.withDefaults()) //implements login for Postman / rest api access
                 .sessionManagement(session ->
                     session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) //makes it stateless, doesn't work w form login - every request is new session / requires login
@@ -38,30 +42,10 @@ public class SecurityConfig {
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider(); //for connecting with a database
-        provider.setPasswordEncoder(NoOpPasswordEncoder.getInstance()); //no pw encoder, change to bcrypt later
-        provider.setUserDetailsService(userDetailsService);
+        provider.setPasswordEncoder(new BCryptPasswordEncoder(HASH_STRENGTH)); //bcrypt encoder to check pw
+        provider.setUserDetailsService(userDetailsService); //uses our custom userdetailsservice (MyUserDetailsService)
         return provider;
     }
 
-
-//    @Bean
-//    public UserDetailsService userDetailsService() {
-//
-//        UserDetails user1 = User
-//                .withDefaultPasswordEncoder()
-//                .username("user1")
-//                .password("pw1")
-//                .roles("USER")
-//                .build();
-//
-//        UserDetails user2 = User
-//                .withDefaultPasswordEncoder() //pw encryption, change to bcrypt later
-//                .username("user2")
-//                .password("pw2")
-//                .roles("ADMIN") //don't use in this app, just stick with "USER"?
-//                .build();
-//
-//        return new InMemoryUserDetailsManager(user1, user2);
-//    }
 
 }
