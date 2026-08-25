@@ -18,6 +18,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration //tell Spring this is a config file, and has to search for configs here
 @EnableWebSecurity //tell Spring Security to not use default flow, but instead use the flow here
@@ -27,6 +28,9 @@ public class SecurityConfig {
 
     @Autowired
     private UserDetailsService userDetailsService;
+
+    @Autowired
+    private JwtFilter jwtFilter;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -42,6 +46,7 @@ public class SecurityConfig {
                 .httpBasic(Customizer.withDefaults()) //implements login for Postman / rest api access
                 .sessionManagement(session ->
                     session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) //makes it stateless, doesn't work w form login - every request is new session / requires login
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class) //add JWT filter before usernamepw auth filter
                 .build(); //tells spring sec to use this sec filter chain
     }
 
