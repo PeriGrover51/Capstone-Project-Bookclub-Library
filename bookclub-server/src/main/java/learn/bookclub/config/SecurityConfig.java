@@ -1,11 +1,13 @@
 package learn.bookclub.config;
 
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -30,9 +32,13 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         return http.csrf(customizer -> customizer.disable()) //disable csrf - make http stateless instead
-                .authorizeHttpRequests(request ->
-                    request.anyRequest().authenticated()) //no access to any request unless authenticated
-                    //TODO: change to allow certain requests without authentication (login, register, some read-only pages)
+                .authorizeHttpRequests(request -> request
+                        // public reads: login + signup,
+                        .requestMatchers("/api/user/**").permitAll()
+
+                        //no access to any request unless authenticated
+                        .anyRequest().authenticated())
+                    //TODO: add more requestMatchers (public reads, members-only for all reqs, members-only for writes)
                 .httpBasic(Customizer.withDefaults()) //implements login for Postman / rest api access
                 .sessionManagement(session ->
                     session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) //makes it stateless, doesn't work w form login - every request is new session / requires login
@@ -46,6 +52,13 @@ public class SecurityConfig {
         provider.setUserDetailsService(userDetailsService); //uses our custom userdetailsservice (MyUserDetailsService)
         return provider;
     }
+
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception { //get a hold on auth manager, will talk to auth provider
+        return config.getAuthenticationManager();
+    }
+
+    //TODO: add cors config to allow React client to make requests
 
 
 }
