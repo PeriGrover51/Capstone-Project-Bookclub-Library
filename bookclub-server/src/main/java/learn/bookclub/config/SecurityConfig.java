@@ -45,6 +45,7 @@ public class SecurityConfig {
 
                         //writes to books + meetings: members only
                         .requestMatchers(HttpMethod.POST, "/api/books/**", "/api/meetings/**").authenticated()
+                        .requestMatchers(HttpMethod.PUT, "/api/books/**", "/api/meetings/**").authenticated()
 
                         //no access to any request unless authenticated
                         .anyRequest().authenticated())
