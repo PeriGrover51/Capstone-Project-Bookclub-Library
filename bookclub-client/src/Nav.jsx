@@ -12,7 +12,7 @@ export default function Nav() {
             <div>
                 <h1 className="mb-6 px-2 text-lg font-bold text-white">Book Club</h1>
                 <nav className="flex flex-col gap-1">
-                    <NavItem to="/">Books</NavItem>
+                    <NavItem to="/books">Books</NavItem>
                     <NavItem to="/">Meetings</NavItem>
                     <NavItem to="/">Current Meeting</NavItem>
 
