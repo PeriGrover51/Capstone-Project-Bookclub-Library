@@ -36,6 +36,10 @@ public class UserController {
             return ErrorResponse.build(result);
         }
 
+        //sets user id so response holds correct userId, not just 0
+        User userInDB = userService.findByUsername(user.getUsername());
+        user.setUserId(userInDB.getUserId());
+
         return ResponseEntity.ok(Map.of(
                "token", result.getpayload(),
                "user", Map.of(
