@@ -47,7 +47,17 @@ public class BookController {
 
     //put mapping to update
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@RequestBody Book book) {
-        return null;
+    public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody Book book) {
+        //check that url id == book.bookId
+        if (id != book.getBookId()) {
+            return new ResponseEntity<>(HttpStatus.CONFLICT); //409
+        }
+
+        Result<Book> result = service.update(book);
+
+        if (!result.isSuccess()) {
+            return ErrorResponse.build(result);
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT); //204
     }
 }
