@@ -40,31 +40,30 @@ export default function LoginForm() {
 
     return (
         <>
-            <h4>Log in as a bookclub member</h4>
-            <div className="row">
-                <div className="col-3" />
-
-                <form className="col-6" onSubmit={handleSubmit}>
+            <div className="flex justify-center items-center h-screen">
+                <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
+                    <h1 className="flex justify-center items-center mb-4">Bookclub Login</h1>
                     {errors.length > 0 && <ul>
                         {errors.map(error => <li key={error}>{error}</li>)}    
                     </ul>}
                     
-                    <div className="form-control">
-                        <label htmlFor="username-input">Username: </label>
-                        <input type="text" id="username-input" name="username" onChange={handleChange} value={user.username} />
+                    <div className="mb-4">
+                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username-input">Username: </label>
+                        <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                             type="text" id="username-input" name="username" onChange={handleChange} value={user.username} />
                     </div>
         
-                    <div className="form-control">
-                        <label htmlFor="password-input">Password: </label>
-                        <input type="password" id="password-input" name="password" onChange={handleChange} value={user.password} />
+                    <div className="mb-6">
+                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password-input">Password: </label>
+                        <input className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                            type="password" id="password-input" name="password" onChange={handleChange} value={user.password} />
                     </div>
         
-                    <div className="form-control">
-                        <button type="submit">Log In!</button>
+                    <div className="flex items-center justify-between">
+                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                             type="submit">Log In!</button>
                     </div>
                 </form>
-
-                <div className="col-3" />
             </div>    
         </>
     );

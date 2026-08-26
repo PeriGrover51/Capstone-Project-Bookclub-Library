@@ -52,7 +52,6 @@ public class UserService {
     }
 
     public Result<String> verify(User user) {
-        //TODO: change to Result<User>
         Result<String> result = new Result<>();
 
         Authentication authentication =
@@ -67,5 +66,9 @@ public class UserService {
         }
 
         return result;
+    }
+
+    public User findByUsername(String username) {
+        return repository.findByUsername(username);
     }
 }
