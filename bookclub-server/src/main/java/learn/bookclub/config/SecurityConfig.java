@@ -38,9 +38,10 @@ public class SecurityConfig {
 
         return http.csrf(customizer -> customizer.disable()) //disable csrf - make http stateless instead
                 .authorizeHttpRequests(request -> request
-                        // public: login + signup, books (read only)
+                        // public: login + signup, books (read only), meetings (read only)
                         .requestMatchers("/api/user/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/books/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/meetings/**").permitAll()
 
                         //no access to any request unless authenticated
                         .anyRequest().authenticated())

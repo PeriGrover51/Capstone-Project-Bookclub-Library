@@ -18,12 +18,25 @@ create table books (
 	img_link text
 );
 
+create table meetings (
+	meeting_id int primary key auto_increment,
+	book_id int,
+	reading_goal text,
+	meeting_date date,
+	meeting_notes text,
+	constraint fk_book_id
+		foreign key (book_id)
+		references books (book_id)
+);
+
 
 delimiter //
 create procedure set_known_good_state()
 begin
 delete from user;
 alter table user auto_increment = 1;
+delete from meetings;
+alter table meetings auto_increment = 1;
 delete from books;
 alter table books auto_increment = 1;
 
@@ -37,6 +50,11 @@ insert into books (title, author, genre, when_read, link, img_link) values
 		'2026-07-16', 
 		"https://www.goodreads.com/en/book/show/40395.A_Princess_of_Mars",
 		"https://upload.wikimedia.org/wikipedia/commons/0/03/Princess_of_Mars.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original");
+insert into meetings (book_id, reading_goal, meeting_date, meeting_notes) values 
+		(1,
+		"chs 1-12",
+		'2026-07-16',
+		"start the barsoom trilogy, can be found in public domain");
 
 end //
 delimiter ;
