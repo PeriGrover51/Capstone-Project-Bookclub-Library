@@ -14,4 +14,6 @@ insert into meetings (book_id, reading_goal, meeting_date, meeting_notes) values
 		'2026-07-16',
 		"start the barsoom trilogy, can be found in public domain");
 
-select * from meetings m join books b on m.book_id = b.book_id;
+select meeting_id, reading_goal, meeting_date, meeting_notes, b.book_id, title, author, genre, when_read, link, img_link
+	from meetings m join books b 
+	on m.book_id = b.book_id;

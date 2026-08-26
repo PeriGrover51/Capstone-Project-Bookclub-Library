@@ -135,6 +135,52 @@ class BookServiceTest {
     }
 
     //create tests:
-    //happy, blank / null fields, set id, dupe test
+    //happy, set id, dupe test
+    //null / blank fields covered in update tests
+    @Test
+    void shouldNotCreateSetId() {
+        Book setId = TestDataHelper.bookToCreate();
+        setId.setBookId(2);
+
+        when(repository.findAll()).thenReturn(List.of(TestDataHelper.existingBook()));
+        Result<Book> result = service.create(setId);
+
+        assertFalse(result.isSuccess());
+        assertTrue(result.getErrorMessages().contains("bookId must not be set"));
+
+
+        verify(repository, never()).create(setId);
+    }
+
+    @Test
+    void shouldNotCreateDuplicate() {
+        Book duplicate = TestDataHelper.existingBook();
+        duplicate.setBookId(0);
+
+        when(repository.findAll()).thenReturn(List.of(TestDataHelper.existingBook()));
+        Result<Book> result = service.create(duplicate);
+
+        assertFalse(result.isSuccess());
+        assertTrue(result.getErrorMessages().contains("book cannot be duplicate"));
+
+
+        verify(repository, never()).create(duplicate);
+    }
+
+    @Test
+    void createHappy() {
+        Book toCreate = TestDataHelper.bookToCreate();
+        Book afterCreate = TestDataHelper.bookToCreate();
+        afterCreate.setBookId(2);
+
+        when(repository.findAll()).thenReturn(List.of(TestDataHelper.existingBook()));
+        when(repository.create(toCreate)).thenReturn(afterCreate);
+        Result<Book> result = service.create(toCreate);
+
+        assertTrue(result.isSuccess());
+        assertEquals(afterCreate, result.getpayload());
+
+        verify(repository, times(1)).create(toCreate);
+    }
 
 }

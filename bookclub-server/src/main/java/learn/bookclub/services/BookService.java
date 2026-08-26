@@ -66,8 +66,25 @@ public class BookService {
 
     public Result<Book> create(Book book) {
         //create validation: id must be 0
-        return null;
+        Result<Book> result = new Result<>();
+        validate(book, result);
+
+        if (!result.isSuccess()) {
+            return result;
+        }
+
+        if (book.getBookId() != 0) {
+            result.addErrorMessage("bookId must not be set", ResultType.INVALID);
+            return result;
+        }
+
+        Book created = repository.create(book);
+        result.setpayload(created);
+
+        return result;
     }
+
+
 
     private void validate(Book book, Result<Book> result) {
         //validation for create + update:book/ title / author / genre / whenRead cannot be null or blank
