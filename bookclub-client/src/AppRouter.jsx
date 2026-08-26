@@ -5,6 +5,7 @@ import Home from "./Home"
 import { useAuth } from "./AuthContext"
 import SignupForm from "./users/SignupForm"
 import BooksPage from "./books/BooksPage"
+import MeetingsPage from "./meetings/MeetingsPage"
 
 export default function AppRouter() {
     const { user } = useAuth() //get user from context
@@ -29,6 +30,10 @@ export default function AppRouter() {
                 {
                     path: "books",
                     element: <BooksPage/>
+                },
+                {
+                    path: "meetings",
+                    element: <MeetingsPage/>
                 }
             ]
         }
