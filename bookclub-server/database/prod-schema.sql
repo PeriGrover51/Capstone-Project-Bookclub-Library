@@ -17,3 +17,14 @@ create table books (
 	link text,
 	img_link text
 );
+
+create table meetings (
+	meeting_id int primary key auto_increment,
+	book_id int,
+	reading_goal text,
+	meeting_date date,
+	meeting_notes text,
+	constraint fk_book_id
+		foreign key (book_id)
+		references books (book_id)
+);
