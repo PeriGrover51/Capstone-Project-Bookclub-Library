@@ -13,14 +13,6 @@ public class Book {
     private String link;
     private String imgLink;
 
-    public Book(int bookId, String title, String author, String genre, Date whenRead) {
-        this.bookId = bookId;
-        this.title = title;
-        this.author = author;
-        this.genre = genre;
-        this.whenRead = whenRead;
-    }
-
     public Book(int bookId, String title, String author, String genre, Date whenRead, String link, String imgLink) {
         this.bookId = bookId;
         this.title = title;
