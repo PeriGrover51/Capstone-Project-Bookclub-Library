@@ -21,6 +21,16 @@ public class Book {
         this.whenRead = whenRead;
     }
 
+    public Book(int bookId, String title, String author, String genre, Date whenRead, String link, String imgLink) {
+        this.bookId = bookId;
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+        this.whenRead = whenRead;
+        this.link = link;
+        this.imgLink = imgLink;
+    }
+
     public int getBookId() {
         return bookId;
     }
