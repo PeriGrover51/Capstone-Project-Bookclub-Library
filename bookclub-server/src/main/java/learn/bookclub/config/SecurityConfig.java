@@ -1,5 +1,6 @@
 package learn.bookclub.config;
 
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +38,9 @@ public class SecurityConfig {
 
         return http.csrf(customizer -> customizer.disable()) //disable csrf - make http stateless instead
                 .authorizeHttpRequests(request -> request
-                        // public reads: login + signup,
+                        // public: login + signup, books (read only)
                         .requestMatchers("/api/user/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/books/**").permitAll()
 
                         //no access to any request unless authenticated
                         .anyRequest().authenticated())
