@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class MeetingMapper implements RowMapper<Meeting> {
     @Override
@@ -15,14 +16,14 @@ public class MeetingMapper implements RowMapper<Meeting> {
                 rs.getString("title"),
                 rs.getString("author"),
                 rs.getString("genre"),
-                rs.getDate("when_read"),
+                rs.getObject("when_read", LocalDate.class),
                 rs.getString("link"),
                 rs.getString("img_link")
         );
         return new Meeting(
                 rs.getInt("meeting_id"),
                 rs.getString("reading_goal"),
-                rs.getDate("meeting_date"),
+                rs.getObject("meeting_date", LocalDate.class),
                 rs.getString("meeting_notes"),
                 book
         );

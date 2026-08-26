@@ -1,16 +1,17 @@
 package learn.bookclub.models;
 
-import java.util.Date;
+import java.time.LocalDate;
+//import java.util.Date;
 import java.util.Objects;
 
 public class Meeting {
     private int meetingId;
     private String readingGoal;
-    private Date meetingDate;
+    private LocalDate meetingDate;
     private String meetingNotes;
     private Book book;
 
-    public Meeting(int meetingId, String readingGoal, Date meetingDate, String meetingNotes, Book book) {
+    public Meeting(int meetingId, String readingGoal, LocalDate meetingDate, String meetingNotes, Book book) {
         this.meetingId = meetingId;
         this.readingGoal = readingGoal;
         this.meetingDate = meetingDate;
@@ -35,11 +36,11 @@ public class Meeting {
         this.readingGoal = readingGoal;
     }
 
-    public Date getMeetingDate() {
+    public LocalDate getMeetingDate() {
         return meetingDate;
     }
 
-    public void setMeetingDate(Date meetingDate) {
+    public void setMeetingDate(LocalDate meetingDate) {
         this.meetingDate = meetingDate;
     }
 
