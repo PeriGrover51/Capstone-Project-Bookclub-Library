@@ -1,6 +1,7 @@
 package learn.bookclub.repos;
 
 import learn.bookclub.models.Book;
+import learn.bookclub.services.TestDataHelper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,24 @@ class BookJdbcRepositoryTest {
     void findByIdInvalid() {
         Book book = repository.findById(999);
         assertNull(book);
+    }
+
+
+    //create + update tests:
+    @Test
+    void shouldCreate() {
+        Book book = TestDataHelper.bookToCreate();
+        Book actual = repository.create(book);
+
+        assertEquals(2, actual.getBookId());
+        assertEquals(repository.findById(2), actual);
+    }
+
+    @Test
+    void shouldUpdate() {
+        Book toUpdate = TestDataHelper.bookToUpdate();
+        assertTrue(repository.update(toUpdate));
+        assertEquals("UPDATE", repository.findById(1).getTitle());
     }
 
 }

@@ -31,4 +31,33 @@ public class BookController {
         }
         return new ResponseEntity<>(result.getpayload(), HttpStatus.OK);
     }
+
+    //post mapping to create
+    //user authentication should be sent in the form of a jwt token, which should be handled in the chain - no need to check for it here
+    //no need to check user mismatch here either
+    //should be straightforward?
+    @PostMapping
+    public ResponseEntity<?> create(@RequestBody Book book) {
+        Result<Book> result = service.create(book);
+        if (!result.isSuccess()) {
+            return ErrorResponse.build(result);
+        }
+        return new ResponseEntity<>(result.getpayload(), HttpStatus.CREATED);
+    }
+
+    //put mapping to update
+    @PutMapping("/{id}")
+    public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody Book book) {
+        //check that url id == book.bookId
+        if (id != book.getBookId()) {
+            return new ResponseEntity<>(HttpStatus.CONFLICT); //409
+        }
+
+        Result<Book> result = service.update(book);
+
+        if (!result.isSuccess()) {
+            return ErrorResponse.build(result);
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT); //204
+    }
 }

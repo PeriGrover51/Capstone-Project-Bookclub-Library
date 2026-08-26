@@ -1,6 +1,7 @@
 package learn.bookclub.models;
 
-import java.util.Date;
+import java.time.LocalDate;
+//import java.util.Date;
 import java.util.Objects;
 
 public class Book {
@@ -9,11 +10,11 @@ public class Book {
     private String title; //required
     private String author; //required
     private String genre; //required
-    private Date whenRead; //required
+    private LocalDate whenRead; //required
     private String link;
     private String imgLink;
 
-    public Book(int bookId, String title, String author, String genre, Date whenRead, String link, String imgLink) {
+    public Book(int bookId, String title, String author, String genre, LocalDate whenRead, String link, String imgLink) {
         this.bookId = bookId;
         this.title = title;
         this.author = author;
@@ -55,11 +56,11 @@ public class Book {
         this.genre = genre;
     }
 
-    public Date getWhenRead() {
+    public LocalDate getWhenRead() {
         return whenRead;
     }
 
-    public void setWhenRead(Date whenRead) {
+    public void setWhenRead(LocalDate whenRead) {
         this.whenRead = whenRead;
     }
 
