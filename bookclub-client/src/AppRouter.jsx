@@ -7,6 +7,7 @@ import SignupForm from "./users/SignupForm"
 import BooksPage from "./books/BooksPage"
 import MeetingsPage from "./meetings/MeetingsPage"
 import BookForm from "./books/BookForm"
+import MeetingForm from "./meetings/MeetingForm"
 
 export default function AppRouter() {
     const { user } = useAuth() //get user from context
@@ -43,6 +44,14 @@ export default function AppRouter() {
                 {
                     path: "meetings",
                     element: <MeetingsPage/>
+                },
+                {
+                    path: "meetings/add",
+                    element: user ? <MeetingForm /> : <Navigate to="/"/>
+                },
+                {
+                    path: "meetings/edit/:id",
+                    element: user ? <MeetingForm /> : <Navigate to="/"/>
                 }
             ]
         }
