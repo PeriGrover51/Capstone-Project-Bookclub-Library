@@ -6,6 +6,7 @@ import { useAuth } from "./AuthContext"
 import SignupForm from "./users/SignupForm"
 import BooksPage from "./books/BooksPage"
 import MeetingsPage from "./meetings/MeetingsPage"
+import BookForm from "./books/BookForm"
 
 export default function AppRouter() {
     const { user } = useAuth() //get user from context
@@ -30,6 +31,14 @@ export default function AppRouter() {
                 {
                     path: "books",
                     element: <BooksPage/>
+                },
+                {
+                    path: "books/add",
+                    element: user ? <BookForm /> : <Navigate to="/"/>
+                },
+                {
+                    path: "books/edit/:id",
+                    element: user ? <BookForm /> : <Navigate to="/"/>
                 },
                 {
                     path: "meetings",
