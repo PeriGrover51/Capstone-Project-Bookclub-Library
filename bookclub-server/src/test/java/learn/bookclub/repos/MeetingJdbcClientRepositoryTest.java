@@ -2,6 +2,7 @@ package learn.bookclub.repos;
 
 import learn.bookclub.models.Book;
 import learn.bookclub.models.Meeting;
+import learn.bookclub.services.TestDataHelper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,24 @@ class MeetingJdbcClientRepositoryTest {
     void findByIdInvalid() {
         Meeting meeting = repository.findById(999);
         assertNull(meeting);
+    }
+
+    //create + update tests:
+    @Test
+    void shouldCreate() {
+        Meeting toCreate = TestDataHelper.meetingToCreate();
+        Meeting actual = repository.create(toCreate);
+
+        assertEquals(2, actual.getMeetingId());
+        assertEquals(actual, repository.findById(2));
+        assertEquals(2, repository.findAll().size());
+    }
+
+    @Test
+    void shouldUpdate() {
+        Meeting toUpdate = TestDataHelper.meetingToUpdate();
+        assertTrue(repository.update(toUpdate));
+        assertEquals("UPDATE",repository.findById(1).getReadingGoal());
     }
 
 }
