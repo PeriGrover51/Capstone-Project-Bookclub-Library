@@ -28,3 +28,15 @@ create table meetings (
 		foreign key (book_id)
 		references books (book_id)
 );
+
+create table nominations (
+	nomination_id int primary key auto_increment,
+	user_id int,
+	title text,
+	author text,
+	genre text,
+	constraint fk_user_id
+		foreign key (user_id)
+		references user (user_id)
+);
+
