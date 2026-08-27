@@ -31,4 +31,32 @@ public class MeetingController {
         }
         return new ResponseEntity<>(result.getpayload(), HttpStatus.OK);
     }
+
+    //post mapping to create
+    //user must be logged in, but specific user doesn't matter
+    @PostMapping
+    public ResponseEntity<?> create(@RequestBody Meeting meeting) {
+        Result<Meeting> result = service.create(meeting);
+        if (!result.isSuccess()) {
+            return ErrorResponse.build(result);
+        }
+        return new ResponseEntity<>(result.getpayload(), HttpStatus.CREATED);
+    }
+
+
+    //put mapping to update
+    @PutMapping("/{id}")
+    public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody Meeting meeting) {
+        //check that url id == meeting.meetingId
+        if (id != meeting.getMeetingId()) {
+            return new ResponseEntity<>(HttpStatus.CONFLICT); //409
+        }
+
+        Result<Meeting> result = service.update(meeting);
+
+        if (!result.isSuccess()) {
+            return ErrorResponse.build(result);
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT); //204
+    }
 }
