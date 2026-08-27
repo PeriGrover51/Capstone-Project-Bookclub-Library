@@ -18,7 +18,7 @@ export default function Nav() {
 
                     {user && (
                         <>
-                        <NavItem to="/">Nominations</NavItem>
+                        <NavItem to="/nominations">Nominations</NavItem>
                         </>
                     )}
 
