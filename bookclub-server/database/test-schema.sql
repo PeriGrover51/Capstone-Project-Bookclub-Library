@@ -29,10 +29,23 @@ create table meetings (
 		references books (book_id)
 );
 
+create table nominations (
+	nomination_id int primary key auto_increment,
+	user_id int,
+	title text,
+	author text,
+	genre text,
+	constraint fk_user_id
+		foreign key (user_id)
+		references user (user_id)
+);
+
 
 delimiter //
 create procedure set_known_good_state()
 begin
+delete from nominations;
+alter table nominations auto_increment = 1;
 delete from user;
 alter table user auto_increment = 1;
 delete from meetings;
@@ -55,6 +68,12 @@ insert into meetings (book_id, reading_goal, meeting_date, meeting_notes) values
 		"chs 1-12",
 		'2026-07-16',
 		"start the barsoom trilogy, can be found in public domain");
+insert into nominations (user_id, title, author, genre) values (
+	1,
+	"Green City Wars",
+	"Adrian Tchaikovsky",
+	"Science Fiction"
+);
 
 end //
 delimiter ;
