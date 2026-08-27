@@ -1,6 +1,7 @@
 package learn.bookclub.repos;
 
 import learn.bookclub.models.Nomination;
+import learn.bookclub.services.TestDataHelper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,25 @@ class NominationJdbcClientRepositoryTest {
     void findByIdInvalid() {
         Nomination nomination = repository.findById(999);
         assertNull(nomination);
+    }
+
+
+    //create/update tests:
+    @Test
+    void createHappy() {
+        Nomination toCreate = TestDataHelper.nominationToCreate();
+        Nomination actual = repository.create(toCreate);
+
+        assertEquals(2, actual.getNominationId());
+        assertEquals(actual, repository.findById(2));
+        assertEquals(2, repository.findAll().size());
+    }
+
+    @Test
+    void updateHappy() {
+        Nomination toUpdate = TestDataHelper.nominationToUpdate();
+        assertTrue(repository.update(toUpdate));
+        assertEquals("UPDATE",repository.findById(1).getTitle());
     }
 
 }

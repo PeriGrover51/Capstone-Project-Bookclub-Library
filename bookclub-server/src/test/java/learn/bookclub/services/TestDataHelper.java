@@ -86,4 +86,26 @@ public class TestDataHelper {
                 existingUser()
         );
     }
+
+    public static Nomination nominationToCreate() {
+        return new Nomination(
+                0,
+                "Fourth Wing",
+                "Rebecca Yarros",
+                "Fantasy",
+                existingUser()
+        );
+    }
+
+    public static Nomination nominationToUpdate() {
+        return new Nomination(
+                1,
+                "UPDATE",
+                "Adrian Tchaikovsky",
+                "Science Fiction",
+                existingUser()
+        );
+    }
+
+
 }
