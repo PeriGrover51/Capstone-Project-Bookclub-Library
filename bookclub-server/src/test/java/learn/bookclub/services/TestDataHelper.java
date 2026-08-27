@@ -60,7 +60,7 @@ public class TestDataHelper {
     public static Meeting meetingToUpdate() {
         return new Meeting(
                 1,
-                "chs 1-12 UPDATE",
+                "UPDATE",
                 LocalDate.of(2026, 7, 23),
                 "start the barsoom trilogy, can be found in public domain",
                 existingBook()

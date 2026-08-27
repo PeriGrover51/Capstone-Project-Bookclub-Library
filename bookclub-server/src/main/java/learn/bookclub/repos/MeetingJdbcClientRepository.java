@@ -51,12 +51,12 @@ public class MeetingJdbcClientRepository implements MeetingRepository {
     @Override
     public Meeting create(Meeting meeting) {
         final String sql = """
-                insert into meetings (book_id, reading_goal, meeting_date, meeting_notes) values
+                insert into meetings (book_id, reading_goal, meeting_date, meeting_notes) values (
                 :book_id,
                 :reading_goal,
                 :meeting_date,
                 :meeting_notes
-                ;""";
+                );""";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
