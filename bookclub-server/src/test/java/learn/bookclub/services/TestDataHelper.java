@@ -2,6 +2,8 @@ package learn.bookclub.services;
 
 import learn.bookclub.models.Book;
 import learn.bookclub.models.Meeting;
+import learn.bookclub.models.Nomination;
+import learn.bookclub.models.User;
 
 import java.time.LocalDate;
 //import java.util.Date;
@@ -64,6 +66,24 @@ public class TestDataHelper {
                 LocalDate.of(2026, 7, 23),
                 "start the barsoom trilogy, can be found in public domain",
                 existingBook()
+        );
+    }
+
+    public static User existingUser() {
+        return new User(
+                1,
+                "a",
+                null
+        );
+    }
+
+    public static Nomination existingNomination() {
+        return new Nomination(
+                1,
+                "Green City Wars",
+                "Adrian Tchaikovsky",
+                "Science Fiction",
+                existingUser()
         );
     }
 }

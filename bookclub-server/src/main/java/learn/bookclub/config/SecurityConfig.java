@@ -47,6 +47,10 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/books/**", "/api/meetings/**").authenticated()
                         .requestMatchers(HttpMethod.PUT, "/api/books/**", "/api/meetings/**").authenticated()
 
+                        //members only for all access - nominations, votes
+                        .requestMatchers("api/nominations/**").authenticated()
+
+
                         //no access to any request unless authenticated
                         .anyRequest().authenticated())
                     //TODO: add more requestMatchers (public reads, members-only for all reqs, members-only for writes)
