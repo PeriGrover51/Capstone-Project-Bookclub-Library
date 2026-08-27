@@ -5,7 +5,6 @@ import { Link } from "react-router-dom"
 export default function BookCard({ book }) {
     const { user } = useAuth()
 
-    //add 'edit book' functionality
     return (
         <div className="w-96 flex-none rounded overflow-hidden shadow-lg">
             <img className="w-full h-72 object-cover" src={book.imgLink} alt={book.title} />
