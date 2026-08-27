@@ -3,6 +3,8 @@ package learn.bookclub.repos;
 import learn.bookclub.models.Meeting;
 import learn.bookclub.repos.mappers.MeetingMapper;
 import org.springframework.jdbc.core.simple.JdbcClient;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -40,6 +42,7 @@ public class MeetingJdbcClientRepository implements MeetingRepository {
                 .optional().orElse(null);
     }
 
+    //will be needed for the 'current session' page
     @Override
     public Meeting findCurrent() {
         return null;
@@ -47,12 +50,52 @@ public class MeetingJdbcClientRepository implements MeetingRepository {
 
     @Override
     public Meeting create(Meeting meeting) {
-        return null;
+        final String sql = """
+                insert into meetings (book_id, reading_goal, meeting_date, meeting_notes) values
+                :book_id,
+                :reading_goal,
+                :meeting_date,
+                :meeting_notes
+                ;""";
+
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+
+        int rowsAffected = jdbcClient.sql(sql)
+                .param("book_id", meeting.getBook().getBookId())
+                .param("reading_goal", meeting.getReadingGoal())
+                .param("meeting_date", meeting.getMeetingDate())
+                .param("meeting_notes", meeting.getMeetingNotes())
+                .update(keyHolder, "meeting_id");
+
+        if (rowsAffected == 0) {
+            return null;
+        }
+
+        meeting.setMeetingId(keyHolder.getKey().intValue());
+
+        return meeting;
     }
 
     @Override
     public boolean update(Meeting meeting) {
-        return false;
+        final String sql = """
+                update meetings set 
+                book_id = :book_id,
+                reading_goal = :reading_goal,
+                meeting_date = :meeting_date,
+                meeting_notes = :meeting_notes
+                where meeting_id = :meeting_id 
+                ;""";
+
+        int rowsUpdated = jdbcClient.sql(sql)
+                .param("book_id", meeting.getBook().getBookId())
+                .param("reading_goal", meeting.getReadingGoal())
+                .param("meeting_date", meeting.getMeetingDate())
+                .param("meeting_notes", meeting.getMeetingNotes())
+                .param("meeting_id", meeting.getMeetingId())
+                .update();
+
+        return rowsUpdated > 0;
     }
 
     @Override

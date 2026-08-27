@@ -47,4 +47,10 @@ class MeetingJdbcClientRepositoryTest {
         assertNull(meeting);
     }
 
+    //create + update tests:
+    @Test
+    void shouldCreate() {
+
+    }
+
 }

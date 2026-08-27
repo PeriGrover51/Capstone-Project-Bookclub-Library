@@ -46,4 +46,24 @@ public class TestDataHelper {
                 "https://www.goodreads.com/en/book/show/40395.A_Princess_of_Mars",
                 "https://upload.wikimedia.org/wikipedia/commons/0/03/Princess_of_Mars.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original");
     }
+
+    public static Meeting meetingToCreate() {
+        return new Meeting(
+                0,
+                "chs 12-24",
+                LocalDate.of(2026, 7, 23),
+                "finish second half of Princess of Mars",
+                existingBook()
+        );
+    }
+
+    public static Meeting meetingToUpdate() {
+        return new Meeting(
+                1,
+                "chs 1-12 UPDATE",
+                LocalDate.of(2026, 7, 23),
+                "start the barsoom trilogy, can be found in public domain",
+                existingBook()
+        );
+    }
 }
