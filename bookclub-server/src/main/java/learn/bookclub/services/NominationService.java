@@ -57,8 +57,8 @@ public class NominationService {
         }
 
         //no user mismatch - in nomination body vs in nomination repo
-        int existingUserId = existing.getUser().getUserId();
-        if (nomination.getUser().getUserId() != existingUserId) {
+        String existingUserName = existing.getUser().getUsername();
+        if (!nomination.getUser().getUsername().equalsIgnoreCase(existingUserName)) {
             result.addErrorMessage("cannot change nomination you don't own", ResultType.INVALID);
         }
         //user mismatch in body vs auth header is handled in the service

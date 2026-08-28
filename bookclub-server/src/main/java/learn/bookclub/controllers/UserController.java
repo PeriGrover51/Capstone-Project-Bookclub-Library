@@ -43,7 +43,7 @@ public class UserController {
         return ResponseEntity.ok(Map.of(
                "token", result.getpayload(),
                "user", Map.of(
-                       "id", user.getUserId(),
+                       "userId", user.getUserId(),
                         "username", user.getUsername()
                 )
         ));
