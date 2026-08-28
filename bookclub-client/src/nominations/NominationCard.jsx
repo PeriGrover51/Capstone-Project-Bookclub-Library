@@ -20,6 +20,10 @@ export default function NominationCard({ nomination }) {
                     className="text-black bg-yellow-500 hover:bg-yellow-400 py-2 px-4 mx-2 rounded">
                         Edit
                     </Link>
+                    <Link to={`/nominations/delete/${nomination.nominationId}`} 
+                    className="text-black bg-red-500 hover:bg-red-400 py-2 px-4 mx-2 rounded">
+                        Delete
+                    </Link>
                 </div>
                 }
             </div>

@@ -10,6 +10,7 @@ import BookForm from "./books/BookForm"
 import MeetingForm from "./meetings/MeetingForm"
 import NominationsPage from "./nominations/NominationsPage"
 import NominationForm from "./nominations/NominationForm"
+import NominationDelete from "./nominations/NominationDelete"
 
 export default function AppRouter() {
     const { user } = useAuth() //get user from context
@@ -66,6 +67,10 @@ export default function AppRouter() {
                 {
                     path: "nominations/edit/:id",
                     element: user ? <NominationForm /> : <Navigate to="/"/>
+                },
+                {
+                    path: "nominations/delete/:id",
+                    element: user ? <NominationDelete /> : <Navigate to="/"/>
                 }
             ]
         }
