@@ -72,4 +72,27 @@ public class NominationController {
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT); //204
     }
+
+    //delete mapping: check that the jwt token username matches the username of nom they are deleting
+    //call service.findById(), if nom == null say it don't exist, if nom.getUserName != jwt username throw error
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteById(@PathVariable("id") int id, Authentication authentication) {
+        String requestingUsername = authentication.getName(); //comes from verified JWT, not the request body
+        Result<Nomination> existing = service.findById(id);
+
+        if (existing.getpayload() == null) {
+            return new ResponseEntity<>("nomination id does not exist", HttpStatus.NOT_FOUND);
+        }
+
+        //this checks that the existing nomination's user matches the jwt token (signed-in user) and therefore is allowed to delete this nomination
+        if (!existing.getpayload().getUser().getUsername().equals(requestingUsername)) {
+            return new ResponseEntity<>("Cannot delete a nomination you don't own", HttpStatus.FORBIDDEN);
+        }
+
+        Result<Nomination> result = service.deleteById(id);
+        if (!result.isSuccess()) {
+            return ErrorResponse.build(result);
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }
