@@ -96,6 +96,8 @@ public class NominationJdbcClientRepository implements NominationRepository {
 
     @Override
     public boolean deleteById(int nominationId) {
-        return false;
+        final String sql = "delete from nominations where nomination_id = ?;";
+
+        return jdbcClient.sql(sql).param(nominationId).update() > 0;
     }
 }

@@ -66,4 +66,16 @@ class NominationJdbcClientRepositoryTest {
         assertEquals("UPDATE",repository.findById(1).getTitle());
     }
 
+    @Test
+    void deleteInvalidId() {
+        assertFalse(repository.deleteById(999));
+        assertEquals(1, repository.findAll().size());
+    }
+
+    @Test
+    void deleteHappy() {
+        assertTrue(repository.deleteById(1));
+        assertEquals(0, repository.findAll().size());
+    }
+
 }
