@@ -12,5 +12,5 @@ public interface VoteRepository {
 
     List<Vote> findByNominationId(int nominationId); //for counting total votes of a nomination
 
-    List<Vote> findByUserId(int userId); //for prepopulating frontend nomination cards when a user has already voted on a nomination
+    List<Vote> findByUserId(int userId);
 }

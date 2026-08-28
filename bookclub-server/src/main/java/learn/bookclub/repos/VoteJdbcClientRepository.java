@@ -31,6 +31,9 @@ public class VoteJdbcClientRepository implements VoteRepository {
 
     @Override
     public Vote saveVote(Vote vote) {
+        //if the vote has a null id, then call create(Vote vote)
+        //if the vote has a set id, then call update(Vote vote)
+
         return null;
     }
 
