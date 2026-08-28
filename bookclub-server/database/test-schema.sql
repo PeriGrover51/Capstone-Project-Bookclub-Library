@@ -50,7 +50,7 @@ create table votes (
 		references user (user_id),
 	constraint fk_nomination_id
 		foreign key (nomination_id)
-		references nominations (nomination_id),
+		references nominations (nomination_id) on delete cascade,
 	constraint uq_user_nomination
 		unique (user_id, nomination_id)
 );
