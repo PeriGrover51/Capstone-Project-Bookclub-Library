@@ -86,6 +86,7 @@ public class NominationService {
         //check nomId is unset
         if (nomination.getNominationId() != 0) {
             result.addErrorMessage("id cannot be set", ResultType.INVALID);
+            return result;
         }
 
         Nomination created = repository.create(nomination);

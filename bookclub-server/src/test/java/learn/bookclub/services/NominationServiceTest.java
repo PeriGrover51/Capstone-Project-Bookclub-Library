@@ -173,5 +173,50 @@ class NominationServiceTest {
 
     //create tests:
     //set id, dupe test
+    @Test
+    void shouldNotCreateSetId() {
+        when(repository.findAll()).thenReturn(List.of(TestDataHelper.existingNomination()));
+        when(userRepository.findByUsername(TestDataHelper.nominationToUpdate().getUser().getUsername())).thenReturn(TestDataHelper.existingUser());
+
+        Nomination setId = TestDataHelper.nominationToCreate();
+        setId.setNominationId(3);
+        Result<Nomination> result = service.create(setId);
+
+        assertFalse(result.isSuccess());
+        assertTrue(result.getErrorMessages().contains("id cannot be set"));
+        verify(repository, never()).create(setId);
+    }
+
+    @Test
+    void shouldNotCreateDupe() {
+        when(repository.findAll()).thenReturn(List.of(TestDataHelper.existingNomination()));
+        when(userRepository.findByUsername(TestDataHelper.nominationToUpdate().getUser().getUsername())).thenReturn(TestDataHelper.existingUser());
+
+        Nomination dupe = TestDataHelper.existingNomination();
+        dupe.setNominationId(0);
+        Result<Nomination> result = service.create(dupe);
+
+        assertFalse(result.isSuccess());
+        assertTrue(result.getErrorMessages().contains("nomination cannot be duplicate"));
+        verify(repository, never()).create(dupe);
+    }
+
+    @Test
+    void CreateHappy() {
+        when(repository.findAll()).thenReturn(List.of(TestDataHelper.existingNomination()));
+        when(userRepository.findByUsername(TestDataHelper.nominationToCreate().getUser().getUsername())).thenReturn(TestDataHelper.existingUser());
+
+        Nomination toCreate = TestDataHelper.nominationToCreate();
+        Nomination afterCreate = TestDataHelper.nominationToCreate();
+        afterCreate.setNominationId(2);
+        when(repository.create(toCreate)).thenReturn(afterCreate);
+
+        Result<Nomination> result = service.create(toCreate);
+
+        assertTrue(result.isSuccess());
+        assertEquals(afterCreate, result.getpayload());
+
+        verify(repository, times(1)).create(toCreate);
+    }
 
 }
