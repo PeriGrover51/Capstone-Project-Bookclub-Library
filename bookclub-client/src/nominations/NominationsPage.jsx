@@ -29,7 +29,7 @@ export default function NominationsPage() {
             <>
             <div className="p-6 mb-2 flex items-center rounded">
                 <h1 className="font-bold text-4xl pl-6">Book Nominations</h1>
-                <Link to="/" 
+                <Link to="/nominations/add" 
                     className="text-black text-lg bg-blue-500 hover:bg-blue-400 px-6 py-3 m-4  ml-auto rounded font-semibold w-50 text-center">
                         Add Nomination
                 </Link>
