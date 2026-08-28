@@ -219,4 +219,20 @@ class NominationServiceTest {
         verify(repository, times(1)).create(toCreate);
     }
 
+
+    //delete tests: valid / invalid
+    @Test
+    void shouldNotDeleteInvalidId() {
+        when(repository.deleteById(999)).thenReturn(false);
+        Result<Nomination> result = service.deleteById(999);
+        assertFalse(result.isSuccess());
+    }
+
+    @Test
+    void deleteHappy() {
+        when(repository.deleteById(1)).thenReturn(true);
+        Result<Nomination> result = service.deleteById(1);
+        assertTrue(result.isSuccess());
+    }
+
 }
