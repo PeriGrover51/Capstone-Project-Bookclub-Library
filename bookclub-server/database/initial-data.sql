@@ -27,4 +27,4 @@ select meeting_id, reading_goal, meeting_date, meeting_notes, b.book_id, title, 
 	from meetings m join books b 
 	on m.book_id = b.book_id;
 
-select * from nominations;
+select * from user;
