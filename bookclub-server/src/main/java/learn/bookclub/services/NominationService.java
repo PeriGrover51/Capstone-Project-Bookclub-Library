@@ -95,6 +95,14 @@ public class NominationService {
         return result;
     }
 
+    public Result<Nomination> deleteById(int nominationId) {
+        Result<Nomination> result = new Result<>();
+        if (!repository.deleteById(nominationId)) {
+            result.addErrorMessage("Nomination id not found", ResultType.NOT_FOUND);
+        }
+        return result;
+    }
+
 
 
     private void validate(Result<Nomination> result, Nomination nomination) {
