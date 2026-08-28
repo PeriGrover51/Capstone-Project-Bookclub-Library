@@ -21,10 +21,20 @@ insert into nominations (user_id, title, author, genre) values (
 	"Science Fiction"
 );
 
+insert into votes (user_id, nomination_id, score) values 
+	(2, 1, 3),
+	(1, 2, 4);
 
+select * from nominations;
 
 select meeting_id, reading_goal, meeting_date, meeting_notes, b.book_id, title, author, genre, when_read, link, img_link
 	from meetings m join books b 
 	on m.book_id = b.book_id;
 
-select * from user;
+select v.vote_id, v.score, voter.user_id as voter_id, voter.username as voter_username, n.nomination_id, n.title, n.author, n.genre, nominator.user_id as nominator_id, nominator.username as nominator_username
+	from votes v join user voter on v.user_id = voter.user_id
+	join nominations n on v.nomination_id = n.nomination_id
+	join user nominator on n.user_id = nominator.user_id;
+
+
+select * from votes;
