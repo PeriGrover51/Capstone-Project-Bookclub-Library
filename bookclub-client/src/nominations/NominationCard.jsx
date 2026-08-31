@@ -40,8 +40,8 @@ export default function NominationCard({ nomination }) {
     }
 
     return (
-        <div className="w-full lg:flex flex-none">
-            <div className="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+        <div className="w-120 flex-none rounded overflow-hidden shadow-large">
+            <div className="h-full border border-gray-400 bg-gray-100 rounded p-4 flex flex-col justify-between leading-normal">
                 <div className="mb-6">
                     <div className="text-gray-900 font-bold text-xl mb-2">{nomination.title} by {nomination.author}</div>
                     <p className="text-gray-700 text-base">{nomination.genre}</p>
