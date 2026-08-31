@@ -45,7 +45,16 @@ public class MeetingJdbcClientRepository implements MeetingRepository {
     //will be needed for the 'current session' page
     @Override
     public Meeting findCurrent() {
-        return null;
+        final String sql = """
+                select meeting_id, reading_goal, meeting_date, meeting_notes, b.book_id, title, author, genre, when_read, link, img_link
+                	from meetings m join books b
+                	on m.book_id = b.book_id
+                	order by meeting_date desc
+                	limit 1;""";
+
+        return jdbcClient.sql(sql)
+                .query(new MeetingMapper())
+                .optional().orElse(null);
     }
 
     @Override

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -212,6 +213,38 @@ class MeetingServiceTest {
         assertEquals(afterCreate, result.getpayload());
 
         verify(repository, times(1)).create(toCreate);
+    }
+
+    //find current meeting tests: no meetings found, no future meetings found, happy path
+    @Test
+    void shouldNotFindCurrentZeroMeetings() {
+        when(repository.findCurrent()).thenReturn(null);
+        Result<Meeting> result = service.findCurrent();
+
+        assertFalse(result.isSuccess());
+        assertNull(result.getpayload());
+        assertTrue(result.getErrorMessages().contains("No meetings found"));
+    }
+
+    @Test
+    void shouldNotFindCurrentAllPastMeetings() {
+        when(repository.findCurrent()).thenReturn(TestDataHelper.existingMeeting());
+        Result<Meeting> result = service.findCurrent();
+
+        assertFalse(result.isSuccess());
+        assertNull(result.getpayload());
+        assertTrue(result.getErrorMessages().contains("No future meetings"));
+    }
+
+    @Test
+    void findCurrentHappy() {
+        Meeting expected = TestDataHelper.existingMeeting();
+        expected.setMeetingDate(LocalDate.now().plusWeeks(1));
+        when(repository.findCurrent()).thenReturn(expected);
+        Result<Meeting> result = service.findCurrent();
+
+        assertTrue(result.isSuccess());
+        assertEquals(expected, result.getpayload());
     }
 
 }
