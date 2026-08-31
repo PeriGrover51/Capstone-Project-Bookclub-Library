@@ -14,7 +14,7 @@ export default function Nav() {
                 <nav className="flex flex-col gap-1">
                     <NavItem to="/books">Books</NavItem>
                     <NavItem to="/meetings">Meetings</NavItem>
-                    <NavItem to="/">Current Meeting</NavItem>
+                    <NavItem to="/meetings/current">Current Meeting</NavItem>
 
                     {user && (
                         <>
