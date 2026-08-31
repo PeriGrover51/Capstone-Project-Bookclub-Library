@@ -46,7 +46,7 @@ public class MeetingService {
         }
         //check that the meeting date is in the future, else add error message "no future meetings"
         if (current.getMeetingDate().isBefore(LocalDate.now())) {
-            result.addErrorMessage("No future meetings", ResultType.INVALID);
+            result.addErrorMessage("No future meetings", ResultType.NOT_FOUND);
         }
 
         if (result.isSuccess()) {

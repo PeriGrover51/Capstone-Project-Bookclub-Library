@@ -32,6 +32,16 @@ public class MeetingController {
         return new ResponseEntity<>(result.getpayload(), HttpStatus.OK);
     }
 
+    //get mapping for current / upcoming meeting
+    @GetMapping("/current")
+    public ResponseEntity<?> findCurrent() {
+        Result<Meeting> result = service.findCurrent();
+        if (!result.isSuccess()) {
+            return ErrorResponse.build(result);
+        }
+        return new ResponseEntity<>(result.getpayload(), HttpStatus.OK);
+    }
+
     //post mapping to create
     //user must be logged in, but specific user doesn't matter
     @PostMapping
