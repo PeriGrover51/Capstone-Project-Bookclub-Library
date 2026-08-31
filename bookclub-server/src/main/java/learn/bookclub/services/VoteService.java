@@ -33,8 +33,18 @@ public class VoteService {
         return repository.findByUserId(userId);
     }
 
-    public Vote findByUserIdAndNominationId(int userId, int nominationId) {
-        return repository.findByUserIdAndNominationId(userId, nominationId);
+    public Result<Vote> findByUserAndNominationId(String username, int nominationId) {
+        Result<Vote> result = new Result<>();
+        User user = userRepository.findByUsername(username);
+        if (user == null) {
+            result.addErrorMessage("user doesnt exist", ResultType.NOT_FOUND);
+            return result;
+        }
+
+        //will either have existing vote attached to that user+nom combo, or payload will be null
+        result.setpayload(repository.findByUserIdAndNominationId(user.getUserId(), nominationId));
+
+        return result;
     }
 
     public Result<Vote> saveVote(String username, int nominationId, int score) {
