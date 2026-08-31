@@ -4,7 +4,7 @@ import { Link, NavLink } from 'react-router-dom';
 export default function NavItem({ to, children }) {
   return (
     <NavLink
-      to={to}
+      to={to} end
       className={({ isActive }) =>
         `block rounded-md px-3 py-2 text-sm font-medium ${
           isActive
