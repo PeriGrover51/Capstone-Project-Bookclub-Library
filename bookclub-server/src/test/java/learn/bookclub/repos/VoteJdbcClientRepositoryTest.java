@@ -1,6 +1,7 @@
 package learn.bookclub.repos;
 
 import learn.bookclub.models.Vote;
+import learn.bookclub.services.TestDataHelper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +62,23 @@ class VoteJdbcClientRepositoryTest {
     void findByUserInvalid() {
         List<Vote> votes = repository.findByUserId(999);
         assertTrue(votes.size() == 0);
+    }
+
+
+    //save vote repo tests: create + update
+    @Test
+    void saveNewVoteHappy() {
+        repository.saveVote(TestDataHelper.voteToCreate());
+        assertTrue(repository.findByNominationId(1).size() == 2);
+        assertTrue(repository.findByUserId(1).size() == 1);
+    }
+
+    @Test
+    void saveUpdatedVoteHappy() {
+        repository.saveVote(TestDataHelper.voteToUpdate());
+        assertTrue(repository.findByNominationId(1).size() == 1);
+        assertTrue(repository.findByUserId(1).size() == 0);
+        assertTrue(repository.findByUserId(2).size() == 1);
     }
 
 }

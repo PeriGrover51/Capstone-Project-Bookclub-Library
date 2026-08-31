@@ -26,7 +26,6 @@ public class VoteService {
     }
 
     public Vote findByUserIdAndNominationId(int userId, int nominationId) {
-        //this is
         return repository.findByUserIdAndNominationId(userId, nominationId);
     }
 
