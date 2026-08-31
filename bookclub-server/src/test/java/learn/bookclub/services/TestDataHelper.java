@@ -1,9 +1,6 @@
 package learn.bookclub.services;
 
-import learn.bookclub.models.Book;
-import learn.bookclub.models.Meeting;
-import learn.bookclub.models.Nomination;
-import learn.bookclub.models.User;
+import learn.bookclub.models.*;
 
 import java.time.LocalDate;
 //import java.util.Date;
@@ -105,6 +102,20 @@ public class TestDataHelper {
                 "Science Fiction",
                 existingUser()
         );
+    }
+
+    public static Vote existingVote() {
+        return new Vote(1, 1, 1, 4);
+    }
+
+    public static Vote voteToCreate() {
+        //built to work on repo layer, dunno about service
+        return new Vote(0, 1, 1, 3);
+    }
+
+    public static Vote voteToUpdate() {
+        //again, this should work in repo but I don't know about service layer
+        return new Vote(1, 2, 1, 1);
     }
 
 

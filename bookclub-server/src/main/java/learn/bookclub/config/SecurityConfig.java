@@ -48,12 +48,12 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PUT, "/api/books/**", "/api/meetings/**").authenticated()
 
                         //members only for all access - nominations, votes
-                        .requestMatchers("api/nominations/**").authenticated()
+                        .requestMatchers("api/nominations/**", "api/votes/**").authenticated()
 
 
                         //no access to any request unless authenticated
                         .anyRequest().authenticated())
-                    //TODO: add more requestMatchers (public reads, members-only for all reqs, members-only for writes)
+
                 .httpBasic(Customizer.withDefaults()) //implements login for Postman / rest api access
                 .sessionManagement(session ->
                     session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) //makes it stateless, doesn't work w form login - every request is new session / requires login
