@@ -66,4 +66,10 @@ class MeetingJdbcClientRepositoryTest {
         assertEquals("UPDATE",repository.findById(1).getReadingGoal());
     }
 
+    @Test
+    void shouldFindCurrent() {
+        Meeting current = repository.findCurrent();
+        assertNotNull(current);
+    }
+
 }
