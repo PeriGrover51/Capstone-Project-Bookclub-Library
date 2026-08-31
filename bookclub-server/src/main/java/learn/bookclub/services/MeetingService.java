@@ -6,6 +6,7 @@ import learn.bookclub.repos.BookRepository;
 import learn.bookclub.repos.MeetingRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -30,6 +31,26 @@ public class MeetingService {
             result.addErrorMessage("Meeting not found", ResultType.NOT_FOUND);
         } else {
             result.setpayload(existing);
+        }
+
+        return result;
+    }
+
+    public Result<Meeting> findCurrent() {
+        Result<Meeting> result = new Result<>();
+        Meeting current = repository.findCurrent();
+
+        if (current == null) {
+            result.addErrorMessage("No meetings found", ResultType.NOT_FOUND);
+            return result;
+        }
+        //check that the meeting date is in the future, else add error message "no future meetings"
+        if (current.getMeetingDate().isBefore(LocalDate.now())) {
+            result.addErrorMessage("No future meetings", ResultType.INVALID);
+        }
+
+        if (result.isSuccess()) {
+            result.setpayload(current);
         }
 
         return result;
