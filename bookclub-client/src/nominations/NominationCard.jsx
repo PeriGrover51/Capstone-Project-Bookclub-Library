@@ -2,13 +2,14 @@ import { useEffect, useState } from "react"
 import { useAuth } from '../AuthContext';
 import { Link } from "react-router-dom"
 
-export default function NominationCard({ nomination }) {
+export default function NominationCard({ nomination, showScore }) {
     const { token } = useAuth()
     const { user } = useAuth()
 
     //for holding the user's voting scores
     const [myScore, setMyScore] = useState(null)
 
+    //gets the user's vote for each nomination
     useEffect(() => {
         async function fetchMyVote() {
             const response = await fetch(`http://localhost:8080/api/votes/nomination/${nomination.nominationId}/mine`, {
@@ -26,6 +27,7 @@ export default function NominationCard({ nomination }) {
         fetchMyVote()
     }, [nomination.nominationId, token])
 
+
     async function castVote(score) {
         const response = await fetch(`http://localhost:8080/api/votes/nomination/${nomination.nominationId}`, {
             method: 'POST',
@@ -38,6 +40,26 @@ export default function NominationCard({ nomination }) {
         const data = await response.json()
         setMyScore(data.score) //update local score to reflect new vote immediately
     }
+
+    //score tally
+    const [totalScore, setTotalScore] = useState(null)
+
+    useEffect(() => {
+        if (!showScore) return //do not continue if showScore is false (no need to fetch and then keep hidden)
+
+        async function fetchAndCountVotes() {
+            const response = await fetch(`http://localhost:8080/api/votes/nomination/${nomination.nominationId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            const votes = await response.json() //List<Vote> from backend
+            const sum = votes.reduce((accumulator, vote) => accumulator + vote.score, 0) //loops thru each vote, adds that vote's score to the accumulator (running total)
+            setTotalScore(sum)
+        }
+
+        fetchAndCountVotes()
+    }, [showScore, nomination.nominationId, token])
 
     return (
         <div className="w-120 flex-none rounded overflow-hidden shadow-large">
@@ -75,6 +97,12 @@ export default function NominationCard({ nomination }) {
                         ))}
                     </div>
                 </div>
+                {showScore && 
+                <div>
+                    <h3>Final Score: {totalScore}</h3>
+                    <h2></h2>
+                </div>
+                }
             </div>
 
         </div>
