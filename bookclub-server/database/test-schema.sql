@@ -113,8 +113,7 @@ insert into votes(user_id, nomination_id, score) values (
 	3
 );
 insert into favorites (user_id, book_id) values
-	(1, 1),
-	(2, 1);
+	(1, 1);
 
 end //
 delimiter ;
