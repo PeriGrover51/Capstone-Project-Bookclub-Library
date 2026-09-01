@@ -13,7 +13,11 @@ export default function MeetingsPage() {
         const doFetch = async () => {
             const response = await fetch("http://localhost:8080/api/meetings")
             const payload = await response.json()
-            setMeetings(payload)
+
+            //sort books by most recent 
+            const sortedMeetings = [...payload].sort((a, b) => new Date(b.meetingDate) - new Date(a.meetingDate));
+
+            setMeetings(sortedMeetings)
         }
         doFetch()
     }, [])

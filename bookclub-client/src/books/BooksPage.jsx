@@ -12,12 +12,17 @@ export default function BooksPage() {
         const doFetch = async () => {
             const response = await fetch("http://localhost:8080/api/books")
             const payload = await response.json()
-            setBooks(payload)
+
+            //sort books by most recent 
+            const sortedBooks = [...payload].sort((a, b) => new Date(b.whenRead) - new Date(a.whenRead));
+
+            setBooks(sortedBooks)
         }
         doFetch()
     }, [])
 
-    //add 'add book' button
+    
+
     return (
         <>
         <div className="p-6 mb-2 flex items-center rounded">
