@@ -55,3 +55,17 @@ create table votes (
 		unique (user_id, nomination_id)
 );
 
+create table favorites (
+	favorite_id int primary key auto_increment,
+	user_id int,
+	book_id int,
+	constraint fk_favorite_user_id
+		foreign key (user_id)
+		references user (user_id) on delete cascade,
+	constraint fk_favorite_book_id
+		foreign key (book_id)
+		references books (book_id) on delete cascade,
+	constraint uq_user_book
+		unique (user_id, book_id)
+);
+

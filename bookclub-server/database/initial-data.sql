@@ -25,7 +25,16 @@ insert into votes (user_id, nomination_id, score) values
 	(2, 1, 3),
 	(1, 2, 4);
 
-select * from nominations;
+
+insert into favorites (user_id, book_id) values 
+	(1, 1),
+	(2, 2);
+
+
+
+select * from favorites join books on favorites.book_id = books.book_id;
+
+select b.book_id, title, author, genre, when_read, link, img_link from books b join favorites on b.book_id = favorites.book_id;
 
 select meeting_id, reading_goal, meeting_date, meeting_notes, b.book_id, title, author, genre, when_read, link, img_link
 	from meetings m join books b 
@@ -36,5 +45,3 @@ select v.vote_id, v.score, voter.user_id as voter_id, voter.username as voter_us
 	join nominations n on v.nomination_id = n.nomination_id
 	join user nominator on n.user_id = nominator.user_id;
 
-
-select * from votes;
