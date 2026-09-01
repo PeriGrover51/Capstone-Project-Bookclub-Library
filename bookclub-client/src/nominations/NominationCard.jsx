@@ -102,6 +102,10 @@ export default function NominationCard({ nomination, showScore }) {
                     <div className="rounded-full bg-green-500 py-2 w-1/2 text-center">
                         <h3>Final Score: {totalScore}</h3>
                     </div>
+                    <Link to={`/nominations/convert/${nomination.nominationId}`} 
+                    className="text-black bg-cyan-500 hover:bg-sky-400 py-2 px-4 mx-2 rounded-full">
+                        Add to Library
+                    </Link>
                 </div>
                 }
             </div>
