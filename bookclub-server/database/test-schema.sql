@@ -55,10 +55,26 @@ create table votes (
 		unique (user_id, nomination_id)
 );
 
+create table favorites (
+	favorite_id int primary key auto_increment,
+	user_id int,
+	book_id int,
+	constraint fk_favorite_user_id
+		foreign key (user_id)
+		references user (user_id) on delete cascade,
+	constraint fk_favorite_book_id
+		foreign key (book_id)
+		references books (book_id) on delete cascade,
+	constraint uq_user_book
+		unique (user_id, book_id)
+);
+
 
 delimiter //
 create procedure set_known_good_state()
 begin
+delete from favorites;
+alter table favorites auto_increment = 1;
 delete from votes;
 alter table votes auto_increment = 1;
 delete from nominations;
@@ -96,6 +112,8 @@ insert into votes(user_id, nomination_id, score) values (
 	1,
 	3
 );
+insert into favorites (user_id, book_id) values
+	(1, 1);
 
 end //
 delimiter ;
