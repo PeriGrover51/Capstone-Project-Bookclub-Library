@@ -63,8 +63,8 @@ export default function NominationCard({ nomination, showScore }) {
 
     return (
         <div className="w-120 flex-none rounded overflow-hidden shadow-large">
-            <div className="h-full border border-gray-400 bg-gray-100 rounded p-4 flex flex-col justify-between leading-normal">
-                <div className="mb-6">
+            <div className="h-full border border-gray-400 bg-[#dcbfa3] hover:bg-gray-100 rounded p-4 flex flex-col justify-between leading-normal">
+                <div className="mb-4">
                     <div className="text-gray-900 font-bold text-xl mb-2">{nomination.title} by {nomination.author}</div>
                     <p className="text-gray-700 text-base">{nomination.genre}</p>
                     <p className="text-gray-700 text-base">Nominated By {nomination.user.username}</p>
@@ -81,8 +81,8 @@ export default function NominationCard({ nomination, showScore }) {
                     </Link>
                 </div>
                 }
-                <div className="border border-black rounded bg-gray-50">
-                    <div className="w-full text-center pt-4">
+                <div className="border border-black rounded bg-green-200">
+                    <div className="w-full text-center pt-4 font-bold">
                         <h4 className="">Vote:</h4>
                     </div>
                     <div className="w-full text-center">
@@ -97,10 +97,11 @@ export default function NominationCard({ nomination, showScore }) {
                         ))}
                     </div>
                 </div>
-                {showScore && 
-                <div>
-                    <h3>Final Score: {totalScore}</h3>
-                    <h2></h2>
+                {showScore &&
+                <div className="mt-4 text-lg font-bold flex justify-center items-center">
+                    <div className="rounded-full bg-green-500 py-2 w-1/2 text-center">
+                        <h3>Final Score: {totalScore}</h3>
+                    </div>
                 </div>
                 }
             </div>
