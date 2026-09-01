@@ -41,6 +41,12 @@ export default function NominationsPage() {
             <div className="flex flex-wrap m-2 gap-4">
                 {nominations.map(nomination => <NominationCard nomination={nomination} showScore={showScore}/>)}
             </div>
+            <div className="p-6 mb-2 flex justify-center items-center rounded">
+                <Link to="/nominations/delete/all" 
+                    className="text-black text-lg bg-red-500 hover:bg-red-400 px-6 py-3 m-4 rounded-full font-semibold w-50 text-center">
+                        Clear All Nominations
+                </Link>
+            </div>
             </>
         )
 }
