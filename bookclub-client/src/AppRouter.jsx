@@ -12,6 +12,7 @@ import NominationsPage from "./nominations/NominationsPage"
 import NominationForm from "./nominations/NominationForm"
 import NominationDelete from "./nominations/NominationDelete"
 import MeetingCurrent from "./meetings/MeetingCurrent"
+import ConvertToBook from "./nominations/ConvertToBook"
 
 export default function AppRouter() {
     const { user } = useAuth() //get user from context
@@ -72,6 +73,10 @@ export default function AppRouter() {
                 {
                     path: "nominations/delete/:id",
                     element: user ? <NominationDelete /> : <Navigate to="/"/>
+                },
+                {
+                    path: "nominations/convert/:id",
+                    element: user ? <ConvertToBook /> : <Navigate to="/"/>
                 },
                 {
                     path: "meetings/current",
