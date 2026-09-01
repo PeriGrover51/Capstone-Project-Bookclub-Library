@@ -6,10 +6,10 @@ export default function NavItem({ to, children }) {
     <NavLink
       to={to} end
       className={({ isActive }) =>
-        `block rounded-md px-3 py-2 text-sm font-medium ${
+        `block rounded-md px-3 py-2 text-m font-medium ${
           isActive
-            ? "bg-slate-800 text-white"
-            : "text-slate-300 hover:bg-slate-800 hover:text-white"
+            ? "bg-[#663300] text-white"
+            : "text-slate-100 hover:bg-[#663300] hover:text-white"
         }`
       }
     >

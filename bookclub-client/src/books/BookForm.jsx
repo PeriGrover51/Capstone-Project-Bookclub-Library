@@ -76,7 +76,7 @@ export default function BookForm() {
     }
 
     return (
-        <div className="max-w-lg mx-auto mt-8 mb-8 p-8 border border-black bg-stone-100 rounded">
+        <div className="max-w-lg mx-auto mt-8 mb-8 p-8 border border-black bg-[#dcbfa3] rounded">
             <h1 className="font-bold text-xl font-serif mb-6 text-center">{id === undefined ? "Add Book" : "Update Book"}</h1>
             <form onSubmit={handleSubmit} className="flex flex-col">
 

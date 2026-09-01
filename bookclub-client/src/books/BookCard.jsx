@@ -6,7 +6,7 @@ export default function BookCard({ book }) {
     const { user } = useAuth()
 
     return (
-        <div className="w-96 flex-none rounded overflow-hidden shadow-lg bg-gray-100 hover:bg-[#dcbfa3]">
+        <div className="w-96 flex-none rounded overflow-hidden shadow-lg hover:bg-gray-100 bg-[#dcbfa3]">
             <img className="w-full h-72 object-cover" src={book.imgLink} alt={book.title} />
             <div className="px-6 py-4">
                 <div className="font-bold text-xl mb-2 text-center">{book.title}</div>

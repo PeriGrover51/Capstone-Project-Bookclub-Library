@@ -17,7 +17,7 @@ export default function MeetingCurrent() {
 
     return (
         <div>
-            <div className="w-full px-6 py-8 shadow-md sm:px-10 bg-gray-300">
+            <div className="w-full px-6 py-8 shadow-md sm:px-10 bg-[#734d26] text-white rounded ">
                 <div className="mx-auto max-w-5xl text-2xl font-medium uppercase tracking-wide text-center">{meeting !== null ? "Upcoming Meeting" : "No Upcoming Meeting"}</div>
             </div>
             {meeting && 
@@ -35,27 +35,27 @@ export default function MeetingCurrent() {
                     {/* Meeting Info */}
                     <div className="flex-1 space-y-6">
                         <div>
-                            <h2 className="text-2xl font-semibold text-slate-900 bg-gray-300 border border-gray-100 rounded text-center mb-4 p-3">
+                            <h2 className="text-2xl font-semibold text-slate-900 bg-[#e6ac00] border border-gray-100 rounded-full text-center mb-4 p-3">
                                 {meeting.meetingDate}
                             </h2>
                             <h2 className="text-2xl font-semibold text-slate-900">
                                 {meeting.book.title}
                             </h2>
-                            <p className="mt-1 text-lg text-slate-600">
+                            <p className="mt-1 text-lg text-slate-800">
                                 {meeting.book.author}
                             </p>
-                            <p className="mt-1 text-m text-slate-600">
+                            <p className="mt-1 text-m text-slate-800">
                                 {meeting.book.genre}
                             </p>
                         </div>
 
                         <div>
-                            <dt className="text-sm font-medium text-slate-500">Reading Goal:</dt>
+                            <dt className="text-sm font-medium text-slate-800">Reading Goal:</dt>
                             <dd className="mt-1 text-base text-slate-700">{meeting.readingGoal}</dd>
                         </div>
 
                         <div>
-                            <dt className="text-sm font-medium text-slate-500">Notes:</dt>
+                            <dt className="text-sm font-medium text-slate-800">Notes:</dt>
                             <dd className="mt-1 text-base text-slate-700">{meeting.meetingNotes}</dd>
                         </div>
 
