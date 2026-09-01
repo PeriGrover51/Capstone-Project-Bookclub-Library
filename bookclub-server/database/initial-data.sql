@@ -34,7 +34,7 @@ insert into favorites (user_id, book_id) values
 
 select * from favorites join books on favorites.book_id = books.book_id;
 
-select b.book_id, title, author, genre, when_read, link, img_link from books b join favorites on b.book_id = favorites.book_id;
+select b.book_id, title, author, genre, when_read, link, img_link from books b join favorites on b.book_id = favorites.book_id where favorites.user_id = 1;
 
 select meeting_id, reading_goal, meeting_date, meeting_notes, b.book_id, title, author, genre, when_read, link, img_link
 	from meetings m join books b 
