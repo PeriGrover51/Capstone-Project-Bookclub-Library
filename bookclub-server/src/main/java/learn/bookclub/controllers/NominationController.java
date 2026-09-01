@@ -95,4 +95,13 @@ public class NominationController {
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    @DeleteMapping
+    public ResponseEntity<?> deleteAll() { //no need to get auth username, this should fail unless they pass auth anyway
+        Result<Nomination> result = service.deleteAll();
+        if (!result.isSuccess()) {
+            return ErrorResponse.build(result);
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }

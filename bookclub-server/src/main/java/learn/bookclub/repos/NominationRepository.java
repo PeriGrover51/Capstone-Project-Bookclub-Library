@@ -14,4 +14,6 @@ public interface NominationRepository {
     boolean update(Nomination nomination);
 
     boolean deleteById(int nominationId);
+
+    boolean deleteAll();
 }
