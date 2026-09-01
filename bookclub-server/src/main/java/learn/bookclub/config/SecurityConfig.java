@@ -47,8 +47,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/books/**", "/api/meetings/**").authenticated()
                         .requestMatchers(HttpMethod.PUT, "/api/books/**", "/api/meetings/**").authenticated()
 
-                        //members only for all access - nominations, votes
-                        .requestMatchers("api/nominations/**", "api/votes/**").authenticated()
+                        //members only for all access - nominations, votes, favorites
+                        .requestMatchers("api/nominations/**", "api/votes/**", "api/favorites/**").authenticated()
 
 
                         //no access to any request unless authenticated
