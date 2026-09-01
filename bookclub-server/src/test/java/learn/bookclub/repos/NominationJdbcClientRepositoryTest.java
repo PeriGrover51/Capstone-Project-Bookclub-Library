@@ -78,4 +78,10 @@ class NominationJdbcClientRepositoryTest {
         assertEquals(0, repository.findAll().size());
     }
 
+    @Test
+    void deleteAllHappy() {
+        assertTrue(repository.deleteAll());
+        assertEquals(0, repository.findAll().size());
+    }
+
 }

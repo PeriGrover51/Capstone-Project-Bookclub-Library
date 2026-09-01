@@ -103,6 +103,14 @@ public class NominationService {
         return result;
     }
 
+    public Result<Nomination> deleteAll() {
+        Result<Nomination> result = new Result<>();
+        if (!repository.deleteAll()) {
+            result.addErrorMessage("delete all failed", ResultType.INVALID);
+        }
+        return result;
+    }
+
 
 
     private void validate(Result<Nomination> result, Nomination nomination) {

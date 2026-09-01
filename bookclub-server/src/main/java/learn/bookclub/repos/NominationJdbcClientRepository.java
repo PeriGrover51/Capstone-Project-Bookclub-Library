@@ -100,4 +100,11 @@ public class NominationJdbcClientRepository implements NominationRepository {
 
         return jdbcClient.sql(sql).param(nominationId).update() > 0;
     }
+
+    @Override
+    public boolean deleteAll() {
+        final String sql = "delete from nominations;";
+
+        return jdbcClient.sql(sql).update() > 0;
+    }
 }
