@@ -28,13 +28,13 @@ export default function NominationsPage() {
     return (
             <>
             <div className="p-6 mb-2 flex items-center rounded">
-                <h1 className="font-bold text-4xl pl-6">Book Nominations</h1>
+                <h1 className="font-bold text-4xl pl-6">NOMINATIONS</h1>
                 <Link to="/nominations/add" 
-                    className="text-black text-lg bg-blue-500 hover:bg-blue-400 px-6 py-3 m-4  ml-auto rounded font-semibold w-50 text-center">
+                    className="text-black text-lg add-button px-6 py-3 m-4  ml-auto rounded font-semibold w-50 text-center">
                         Add Nomination
                 </Link>
                 {nominations.length > 0 && 
-                <button className="text-black text-lg bg-green-500 hover:bg-green-400 px-6 py-3 m-4  ml-auto rounded font-semibold w-75 text-center"
+                <button className="text-black text-lg vote-button px-6 py-3 m-4  ml-auto rounded font-semibold w-75 text-center"
                     onClick={() => setShowScore(!showScore)}>
                     Show Voting Results
                 </button>
@@ -46,7 +46,7 @@ export default function NominationsPage() {
             {nominations.length > 0 &&
             <div className="p-6 mb-2 flex justify-center items-center rounded">
                 <Link to="/nominations/delete/all" 
-                    className="text-black text-lg bg-red-500 hover:bg-red-400 px-6 py-3 m-4 rounded-full font-semibold w-50 text-center">
+                    className="text-black text-lg delete-button px-6 py-3 m-4 font-semibold w-50 text-center">
                         Clear All Nominations
                 </Link>
             </div>

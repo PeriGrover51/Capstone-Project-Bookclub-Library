@@ -78,7 +78,8 @@ export default function NominationForm() {
     }
 
     return (
-        <div className="max-w-lg mx-auto mt-8 mb-8 p-8 border border-black bg-[#dcbfa3] rounded">
+        <div className="flex justify-center">
+        <div className="w-130 mx-auto mt-8 mb-8 p-8 file-card rounded">
             <h1 className="font-bold text-xl font-serif mb-6 text-center">{id === undefined ? "Add Nomination" : "Update Nomination"}</h1>
             <form onSubmit={handleSubmit} className="flex flex-col">
 
@@ -126,11 +127,12 @@ export default function NominationForm() {
 
                 <button
                     type="submit"
-                    className="text-black text-lg bg-blue-500 hover:bg-blue-400 px-6 py-3 mt-4 rounded font-semibold font-serif w-full text-center">
+                    className="text-black text-lg add-button px-6 py-3 mt-4 font-semibold font-serif w-1/2 mx-auto">
                     Save Nomination
                 </button>
 
             </form>
+        </div>
         </div>
     )
 }

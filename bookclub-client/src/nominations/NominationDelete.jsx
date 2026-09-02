@@ -49,22 +49,26 @@ export default function NominationDelete() {
     }
 
     return (
-        <div className="max-w-lg mx-auto mt-8 mb-8 p-8 border border-black bg-stone-100 rounded">
-            <h1 className="font-bold text-xl mb-6 text-center">Are you sure you want to delete this nomination?</h1>
+        <>
+        <h1 className="font-bold text-4xl mb-6 mt-8 text-center w-full">DELETE NOMINATION</h1>
+        <div className="flex justify-center">
+        <div className="w-96 mx-auto mt-8 mb-8 p-8 file-card">
 
-            <p className="border border-black rounded py-3 text-center text-lg mb-4 bg-sky-100">Title: {nomination.title}</p>
-            <p className="border border-black rounded py-3 text-center text-lg mb-4 bg-green-100">Author: {nomination.author}</p>
-            <p className="border border-black rounded py-3 text-center text-lg mb-4 bg-pink-100">Genre: {nomination.genre}</p>
+            <p className="nomination-delete-tab file-card--book">{nomination.title}</p>
+            <p className="nomination-delete-tab file-card--meeting">{nomination.author}</p>
+            <p className="nomination-delete-tab file-card--nomination">{nomination.genre}</p>
 
             <div className="px-1 pt-4 pb-2 flex justify-center">
                 <Link to="/nominations"
-                className="text-black bg-blue-500 hover:bg-blue-400 py-2 px-4 mx-2 rounded">
+                className="text-black add-button py-2 px-4 mx-2">
                     Cancel
                 </Link>
-                <button onClick={handleDelete} className="text-black bg-red-500 hover:bg-red-400 py-2 px-4 mx-2 rounded">
+                <button onClick={handleDelete} className="text-black delete-button py-2 px-4 mx-2">
                 Delete
                 </button>
             </div>
         </div>
+        </div>
+        </>
     )
 }

@@ -116,6 +116,34 @@
   background-color: #FBE790;
 }
 
+
+/* ---------------------------------------------------------------------- */
+/* Vote button: faded green, some tilt, shadow box                        */
+/* ---------------------------------------------------------------------- */
+.vote-button {
+  background-color: #7BB274;
+  transform: rotate(-1.5deg);
+  box-shadow: 0 3px 6px rgba(40, 28, 16, 0.3);
+}
+
+.vote-button:hover {
+  background-color: #A4D1A2;
+}
+
+
+/* ---------------------------------------------------------------------- */
+/* Delete button: faded red, some tilt, shadow box                        */
+/* ---------------------------------------------------------------------- */
+.delete-button {
+  background-color: #d3494e;
+  transform: rotate(1.5deg);
+  box-shadow: 0 3px 6px rgba(40, 28, 16, 0.3);
+}
+
+.delete-button:hover {
+  background-color: #b86566;
+}
+
  
 /* ---------------------------------------------------------------------- */
 /* Card: old case-file / torn-page look                                   */
@@ -229,7 +257,6 @@
 
 
 /* special file card tab for current meeting page */
-/* folder tab, tucked into the torn top edge */
 .current-meeting__tab {
   position: relative;
   z-index: 1;
@@ -245,3 +272,25 @@
   box-shadow: 0 3px 6px rgba(40, 28, 16, 0.3);
 }
  
+
+/* special tab for the final score and add to library tabs in nominations */
+.final-score-tab {
+  margin: -0.5rem 0 0.85rem -0.25rem;
+  transform: rotate(-1.5deg);
+}
+
+
+/* special tabs for delete nomination page */
+.nomination-delete-tab {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  color: #fff;
+  background: var(--tab-color, var(--accent-book));
+  padding: 0.3rem 0.75rem;
+  margin: -0.5rem 0 0.85rem -0.25rem;
+  transform: rotate(-1.5deg);
+  box-shadow: 0 3px 6px rgba(40, 28, 16, 0.3);
+}
