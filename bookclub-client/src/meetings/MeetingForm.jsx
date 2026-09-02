@@ -96,15 +96,17 @@ export default function MeetingForm() {
     }
 
     return (
-        <div className="max-w-lg mx-auto mt-8 mb-8 p-8 border border-black bg-[#dcbfa3] rounded">
-            <h1 className="font-bold text-xl font-serif mb-6 text-center">{id === undefined ? "Add Meeting" : "Update Meeting"}</h1>
+        <div className="flex justify-center">
+        <div className="w-120 mt-12 mb-8 p-8 border file-card rounded">
+            <h1 className="font-bold text-xl font-serif mb-6 text-center mt-5">{id === undefined ? "Add Meeting" : "Update Meeting"}</h1>
             <form onSubmit={handleSubmit} className="flex flex-col">
                 {/* PUT BOOK DROP DOWN HERE */}
                 <div className="flex flex-col mb-6">
                     <label htmlFor="book" className="font-semibold font-serif mb-1">
-                        Meeting Date <span className="text-red-600">*</span>
+                        Meeting Book <span className="text-red-600">*</span>
                     </label>
                     <select
+                        className="bg-white p-2 border rounded"
                         id="book"
                         name="book"
                         required
@@ -160,11 +162,12 @@ export default function MeetingForm() {
 
                 <button
                     type="submit"
-                    className="text-black text-lg bg-blue-500 hover:bg-blue-400 px-6 py-3 mt-4 rounded font-semibold font-serif w-full text-center">
+                    className="text-black text-lg add-button px-6 py-3 mt-4 rounded font-semibold font-serif w-1/2 mx-auto text-center">
                     Save Meeting
                 </button>
 
             </form>
+        </div>
         </div>
     )
 }

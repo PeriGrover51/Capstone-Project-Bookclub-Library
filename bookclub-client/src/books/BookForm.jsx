@@ -77,7 +77,7 @@ export default function BookForm() {
 
     return (
         <div className="flex justify-center">
-        <div className="w-130 mt-8 mb-2 p-8 file-card rounded text-white">
+        <div className="w-130 mt-8 mb-2 p-8 file-card rounded">
             <h1 className="font-bold text-xl font-serif mb-6 text-center mt-8">{id === undefined ? "Add Book" : "Update Book"}</h1>
             <form onSubmit={handleSubmit} className="flex flex-col">
 
@@ -165,7 +165,7 @@ export default function BookForm() {
 
                 <button
                     type="submit"
-                    className="text-black text-lg bg-blue-500 hover:bg-blue-400 px-6 py-3 mt-4 rounded font-semibold font-serif w-full text-center">
+                    className="text-black text-lg add-button px-6 py-3 mt-4 font-semibold font-serif text-center w-1/2 mx-auto">
                     Save Book
                 </button>
 

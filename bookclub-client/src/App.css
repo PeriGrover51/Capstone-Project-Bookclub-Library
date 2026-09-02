@@ -103,6 +103,19 @@
   background-color: #78AFD4;
 }
 
+/* ---------------------------------------------------------------------- */
+/* Edit button: faded yellow, some tilt, shadow box                       */
+/* ---------------------------------------------------------------------- */
+.edit-button {
+  background-color: #ECE3A1;
+  transform: rotate(-2.5deg);
+  box-shadow: 0 3px 6px rgba(40, 28, 16, 0.3);
+}
+
+.edit-button:hover {
+  background-color: #FBE790;
+}
+
  
 /* ---------------------------------------------------------------------- */
 /* Card: old case-file / torn-page look                                   */
