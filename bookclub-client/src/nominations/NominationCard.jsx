@@ -62,7 +62,7 @@ export default function NominationCard({ nomination, showScore }) {
     }, [showScore, nomination.nominationId, token])
 
     return (
-        <div className="w-120 flex-none rounded overflow-hidden shadow-large">
+        <div className="w-120 min-w-120 flex-none rounded overflow-hidden shadow-large">
             <div className="h-full border border-gray-400 bg-[#dcbfa3] hover:bg-gray-100 rounded p-4 flex flex-col justify-between leading-normal">
                 <div className="mb-4">
                     <div className="text-gray-900 font-bold text-xl mb-2">{nomination.title} by {nomination.author}</div>
