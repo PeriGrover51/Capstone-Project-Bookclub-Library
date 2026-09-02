@@ -1,0 +1,6 @@
+- The Bookclub Archives
+- This app helps archive, organize, and manage books, meetings, and book nominations
+    of the book club I am a member of.
+- This project was made using MySQL, Spring Boot, and React from the in-training curriculum,
+    as well as Spring Security, Bcrypt, JWT tokens, and Tailwind as outside-of-curriculum technology.
+    This project also used Postman for API testing.

@@ -26,7 +26,7 @@ export default function FavoritesPage() {
     return (
             <>
             <div className="p-6 mb-2 flex items-center rounded">
-                <h1 className="font-bold text-4xl pl-6">My Favorites</h1>
+                <h1 className="font-bold text-4xl pl-6 taped-note--header taped-note">My Favorites</h1>
             </div>
             {faves.length === 0 && 
                 <p className="font-semibold text-2xl pl-6">You have no favorites. Click the star icon on any book to add it to favorites!</p>
