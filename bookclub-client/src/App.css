@@ -226,4 +226,22 @@
   font-size: 0.95rem;
   line-height: 1.55;
 }
+
+
+/* special file card tab for current meeting page */
+/* folder tab, tucked into the torn top edge */
+.current-meeting__tab {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  letter-spacing: 0.02em;
+  color: #fff;
+  background: var(--tab-color, var(--accent-book));
+  padding: 0.3rem 0.75rem;
+  margin: -0.5rem 0 0.85rem -0.25rem;
+  transform: rotate(-1.5deg);
+  box-shadow: 0 3px 6px rgba(40, 28, 16, 0.3);
+}
  

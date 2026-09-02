@@ -57,7 +57,7 @@ export default function BookCard({ book, isFavorite }) {
                 {user && 
                 <div className="px-6 pt-4 pb-2 flex justify-center">
                 <Link to={`/books/edit/${book.bookId}`} 
-                className="text-black bg-yellow-500 hover:bg-yellow-400 py-2 px-4 mx-2 rounded">
+                className="text-black edit-button py-2 px-4 mx-2 rounded">
                     Edit
                 </Link>
                 </div>

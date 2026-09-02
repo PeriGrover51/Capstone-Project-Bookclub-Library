@@ -18,24 +18,24 @@ export default function MeetingCurrent() {
     return (
         <div>
             <div className="w-full px-6 py-8 sm:px-10">
-                <div className="mx-auto max-w-5xl text-2xl font-bold uppercase tracking-wide text-center">{meeting !== null ? "Upcoming Meeting" : "No Upcoming Meeting"}</div>
+                <div className="text-4xl font-bold uppercase tracking-wide">{meeting !== null ? "Upcoming Meeting" : "No Upcoming Meeting"}</div>
             </div>
             {meeting && 
             <div className="mx-auto max-w-5xl px-6 py-10 sm:px-10">
                 <div className="flex flex-col gap-8 md:flex-row">
                     {/* Book Cover */}
-                    <div className="flex-shrink-0 md:w-64">
+                    <div className="flex-shrink-0 md:w-64 mt-8">
                         <img
                             src={meeting.book?.imgLink || "https://placehold.co/400x600?text=No+Cover"}
                             alt={meeting.book?.title ? `Cover of ${meeting.book.title}` : "Book cover"}
-                            className="w-full rounded-lg shadow-lg object-cover aspect-[2/3]"
+                            className="w-full rounded-lg shadow-lg object-cover aspect-[2/3] sepia-50 hover:filter-none"
                         />
                     </div>
 
                     {/* Meeting Info */}
-                    <div className="flex-1 space-y-6">
+                    <div className="flex-1 space-y-6 file-card">
                         <div>
-                            <h2 className="text-2xl font-semibold text-slate-900 bg-[#e6ac00] border border-gray-100 rounded-full text-center mb-4 p-3">
+                            <h2 className="text-2xl file-card--meeting current-meeting__tab text-center mb-4 p-3">
                                 {meeting.meetingDate}
                             </h2>
                             <h2 className="text-2xl font-semibold text-slate-900">
