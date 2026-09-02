@@ -17,8 +17,8 @@ export default function MeetingCurrent() {
 
     return (
         <div>
-            <div className="w-full px-6 py-8 shadow-md sm:px-10 bg-[#734d26] text-white rounded ">
-                <div className="mx-auto max-w-5xl text-2xl font-medium uppercase tracking-wide text-center">{meeting !== null ? "Upcoming Meeting" : "No Upcoming Meeting"}</div>
+            <div className="w-full px-6 py-8 sm:px-10">
+                <div className="mx-auto max-w-5xl text-2xl font-bold uppercase tracking-wide text-center">{meeting !== null ? "Upcoming Meeting" : "No Upcoming Meeting"}</div>
             </div>
             {meeting && 
             <div className="mx-auto max-w-5xl px-6 py-10 sm:px-10">
