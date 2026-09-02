@@ -14,6 +14,7 @@ import NominationDelete from "./nominations/NominationDelete"
 import MeetingCurrent from "./meetings/MeetingCurrent"
 import ConvertToBook from "./nominations/ConvertToBook"
 import DeleteAll from "./nominations/DeleteAll"
+import FavoritesPage from "./favorites/FavoritesPage"
 
 export default function AppRouter() {
     const { user } = useAuth() //get user from context
@@ -86,6 +87,10 @@ export default function AppRouter() {
                 {
                     path: "meetings/current",
                     element: <MeetingCurrent />
+                },
+                {
+                    path: "favorites/mine",
+                    element: user ? <FavoritesPage /> : <Navigate to="/"/>
                 }
             ]
         }
