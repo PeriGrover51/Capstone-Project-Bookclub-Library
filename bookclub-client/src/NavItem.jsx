@@ -9,7 +9,7 @@ export default function NavItem({ to, children }) {
         `block rounded-md px-3 py-2 text-m font-medium ${
           isActive
             ? "active-navitem text-white"
-            : "text-slate-100 hover:active-nav-paper-bg hover:text-white"
+            : "text-slate-100 hover:active-navitem"
         }`
       }
     >

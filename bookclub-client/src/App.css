@@ -97,6 +97,7 @@
   background-color: #658CBB;
   transform: rotate(1.5deg);
   box-shadow: 0 3px 6px rgba(40, 28, 16, 0.3);
+  font-family: var(--font-display);
 }
 
 .add-button:hover {
@@ -110,6 +111,7 @@
   background-color: #ECE3A1;
   transform: rotate(-2.5deg);
   box-shadow: 0 3px 6px rgba(40, 28, 16, 0.3);
+  font-family: var(--font-display);
 }
 
 .edit-button:hover {
@@ -138,6 +140,7 @@
   background-color: #d3494e;
   transform: rotate(1.5deg);
   box-shadow: 0 3px 6px rgba(40, 28, 16, 0.3);
+  font-family: var(--font-display);
 }
 
 .delete-button:hover {

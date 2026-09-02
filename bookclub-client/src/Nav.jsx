@@ -10,8 +10,9 @@ export default function Nav() {
         <>
         <aside className="flex h-screen w-64 flex-col justify-between nav-paper-bg p-4 fixed">
             <div>
-                <h1 className="mb-6 px-2 text-lg font-bold text-white">Book Club</h1>
+                
                 <nav className="flex flex-col gap-1">
+                    <Link to="/" end className="mb-6 px-2 text-lg font-bold text-white">Book Club</Link>
                     <NavItem to="/books">Books</NavItem>
                     <NavItem to="/meetings">Meetings</NavItem>
                     <NavItem to="/meetings/current">Current Meeting</NavItem>
