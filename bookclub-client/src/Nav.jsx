@@ -22,6 +22,12 @@ export default function Nav() {
                         </>
                     )}
 
+                    {user && (
+                        <>
+                        <NavItem to="/favorites/mine">My Favorites</NavItem>
+                        </>
+                    )}
+
                     {!user && (
                         <>
                         <NavItem to="/user/login">Login</NavItem>

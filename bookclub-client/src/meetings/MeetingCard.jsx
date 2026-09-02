@@ -7,7 +7,7 @@ export default function MeetingCard({ meeting }) {
     const { user } = useAuth()
 
     return (
-        <div className="w-150 lg:flex flex-none">
+        <div className="max-w-lg min-w-md lg:flex lg:w-[60rem] flex-none">
             <div className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
             style={{backgroundImage: `url(${meeting.book.imgLink})`}}></div>
             <div className="border border-gray-400 bg-[#dcbfa3] hover:bg-gray-100 lg:rounded-r p-4 flex flex-col justify-between leading-normal">
