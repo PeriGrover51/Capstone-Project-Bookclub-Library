@@ -33,7 +33,7 @@ export default function BookCard({ book, isFavorite }) {
     }
 
     return (
-        <div className="relative w-96 flex-none rounded overflow-hidden shadow-lg hover:bg-gray-100 file-card file-card--book">
+        <div className="relative w-96 flex-none rounded overflow-hidden shadow-lg file-card file-card--book">
             <div className="file-card__content">
             <div className="absolute m-2 z-10" onClick={setFavorite}>
                 {!isFave && user &&

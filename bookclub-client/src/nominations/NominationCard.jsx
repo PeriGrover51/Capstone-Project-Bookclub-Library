@@ -62,7 +62,7 @@ export default function NominationCard({ nomination, showScore }) {
     }, [showScore, nomination.nominationId, token])
 
     return (
-        <div className="w-120 min-w-120 flex-none rounded overflow-hidden shadow-large file-card file-card--book">
+        <div className="w-120 min-w-120 flex-none rounded overflow-hidden shadow-large file-card">
             <div className="h-full rounded p-4 flex flex-col justify-between leading-normal">
                 <div className="">
                     <div className="text-gray-900 font-bold text-xl mb-2">{nomination.title} by {nomination.author}</div>
@@ -81,16 +81,16 @@ export default function NominationCard({ nomination, showScore }) {
                     </Link>
                 </div>
                 }
-                <div className="">
+                <div className="taped-note file-card__voting">
                     <div className="w-full text-center pt-4 font-bold">
-                        <h4 className="">Vote:</h4>
+                        <h4 className="file-card__voting-label text-2xl">Vote:</h4>
                     </div>
-                    <div className="w-full text-center">
+                    <div className="w-full text-center vote-score">
                         {[1, 2, 3, 4, 5].map(score => (
                         <button 
                             key={score}
                             onClick={() => castVote(score)}
-                            className={myScore === score ? 'text-black bg-blue-500 hover:bg-blue-400 px-6 py-3 mt-4 rounded font-semibold text-center' : 'text-black bg-white-500 hover:bg-gray-400 px-6 py-3 mt-4 rounded font-semibold text-center'}
+                            className={myScore === score ? 'px-6 py-3 mt-4 font-semibold text-center vote-score selected' : 'px-6 py-3 mt-4 vote-score'}
                         >
                             {score}
                         </button>
