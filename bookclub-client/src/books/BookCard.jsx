@@ -2,20 +2,39 @@ import { useEffect, useState } from "react"
 import { useAuth } from '../AuthContext';
 import { Link } from "react-router-dom"
 
-export default function BookCard({ book }) {
+export default function BookCard({ book, isFavorite }) {
     const { user } = useAuth()
+    const { token } = useAuth()
 
-    //TODO: make isFave, setIsFave props passed down from BooksPage - connected to GET call to favorites controller
-    const [isFave, setIsFave] = useState(false)
+    //necessary since the card manages its own toggle
+    const [isFave, setIsFave] = useState(isFavorite)
+    useEffect(() => {
+        setIsFave(isFavorite)
+    }, [isFavorite])
 
-    function handleClick(event) {
-        console.log("star clicked");
-        setIsFave(!isFave)
+    async function setFavorite(event) {
+        //update the favorites list
+        //if isFave = true, do a delete, else do a post
+        const url = "http://localhost:8080/api/favorites/" + book.bookId
+        let method = "POST"
+        if (isFave) {
+            method = "DELETE"
+        }
+
+        const response = await fetch(url, {
+            method: method,
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        })
+        if (response.status >= 200 && response.status < 300) { //post / delete succeeded = toggle isFave (star icon)
+            setIsFave(!isFave)
+        }
     }
 
     return (
         <div className="relative w-96 flex-none rounded overflow-hidden shadow-lg hover:bg-gray-100 bg-[#dcbfa3]">
-            <div className="absolute m-2" onClick={handleClick}>
+            <div className="absolute m-2" onClick={setFavorite}>
                 {!isFave && user &&
                 <svg className="w-8 h-8 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                     <path stroke="currentColor" strokeWidth="2" d="M11.083 5.104c.35-.8 1.485-.8 1.834 0l1.752 4.022a1 1 0 0 0 .84.597l4.463.342c.9.069 1.255 1.2.556 1.771l-3.33 2.723a1 1 0 0 0-.337 1.016l1.03 4.119c.214.858-.71 1.552-1.474 1.106l-3.913-2.281a1 1 0 0 0-1.008 0L7.583 20.8c-.764.446-1.688-.248-1.474-1.106l1.03-4.119A1 1 0 0 0 6.8 14.56l-3.33-2.723c-.698-.571-.342-1.702.557-1.771l4.462-.342a1 1 0 0 0 .84-.597l1.753-4.022Z"/>

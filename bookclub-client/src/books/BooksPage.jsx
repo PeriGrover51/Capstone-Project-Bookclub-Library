@@ -5,6 +5,7 @@ import { useAuth } from '../AuthContext';
 
 export default function BooksPage() {
     const { user } = useAuth()
+    const { token } = useAuth()
 
     const [books, setBooks] = useState([])
 
@@ -21,6 +22,24 @@ export default function BooksPage() {
         doFetch()
     }, [])
 
+
+    const [faves, setFaves] = useState([])
+
+    useEffect(() => {
+        const doFetch = async () => {
+            const response = await fetch("http://localhost:8080/api/favorites/mine", {
+                headers: {
+                Authorization: "Bearer " + token
+            }
+            })
+            const payload = await response.json()
+
+            setFaves(payload)
+        }
+        doFetch()
+    }, [])
+
+
     
 
     return (
@@ -35,7 +54,7 @@ export default function BooksPage() {
             }
         </div>
         <div className="flex flex-wrap m-2 gap-4">
-            {books.map(book => <BookCard book={book}/>)}
+            {books.map(book => <BookCard book={book} isFavorite={faves.some((fav) => fav.bookId === book.bookId)}/>)}
         </div>
         </>
     )
