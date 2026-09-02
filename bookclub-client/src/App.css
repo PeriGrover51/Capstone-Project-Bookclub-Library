@@ -1,10 +1,5 @@
 /* ==========================================================================
    Paper & Case-File Theme
-   Drop this file into your React app (e.g. src/styles/paper-theme.css) and
-   import it once in main.jsx / App.jsx:  import "./styles/paper-theme.css";
- 
-   Apply `.paper-bg` to the app's root wrapper (the element that already
-   spans the full viewport) for the textured background.
  
    Apply `.file-card` to BookCard / MeetingCard / NominationCard's outer
    element, plus one accent modifier:
@@ -58,6 +53,10 @@
   background-size: cover, cover, cover, cover, 240px 240px;
 }
 
+/* ---------------------------------------------------------------------- */
+/* Navbar Background: dark brown / construction-paper texture             */
+/* ---------------------------------------------------------------------- */
+
 .nav-paper-bg {
   min-height: 100vh;
   background-color: var(--ink);
@@ -72,6 +71,38 @@
   background-blend-mode: normal, normal, normal, normal, multiply;
   background-size: cover, cover, cover, cover, 240px 240px;
 }
+
+/* ---------------------------------------------------------------------- */
+/* Nav Item Background when active: brown / construction-paper texture    */
+/* ---------------------------------------------------------------------- */
+
+.active-navitem {
+  background-color: var(--ink-soft);
+  background-image:
+    /* soft mottled clouding, like uneven paper pulp */
+    radial-gradient(ellipse 60% 40% at 15% 20%, rgba(255, 245, 220, 0.25), transparent 60%),
+    radial-gradient(ellipse 50% 35% at 85% 15%, rgba(120, 90, 50, 0.18), transparent 60%),
+    radial-gradient(ellipse 70% 50% at 30% 85%, rgba(120, 90, 50, 0.15), transparent 60%),
+    radial-gradient(ellipse 55% 40% at 90% 80%, rgba(255, 245, 220, 0.2), transparent 60%),
+    /* fine grain */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.29  0 0 0 0 0.22  0 0 0 0 0.14  0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-blend-mode: normal, normal, normal, normal, multiply;
+  background-size: cover, cover, cover, cover, 240px 240px;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Add button: faded blue, some tilt, shadow box                          */
+/* ---------------------------------------------------------------------- */
+.add-button {
+  background-color: #658CBB;
+  transform: rotate(1.5deg);
+  box-shadow: 0 3px 6px rgba(40, 28, 16, 0.3);
+}
+
+.add-button:hover {
+  background-color: #78AFD4;
+}
+
  
 /* ---------------------------------------------------------------------- */
 /* Card: old case-file / torn-page look                                   */

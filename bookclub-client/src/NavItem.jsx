@@ -8,8 +8,8 @@ export default function NavItem({ to, children }) {
       className={({ isActive }) =>
         `block rounded-md px-3 py-2 text-m font-medium ${
           isActive
-            ? "bg-[#663300] text-white"
-            : "text-slate-100 hover:bg-[#663300] hover:text-white"
+            ? "active-navitem text-white"
+            : "text-slate-100 hover:active-nav-paper-bg hover:text-white"
         }`
       }
     >
