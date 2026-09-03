@@ -79,11 +79,11 @@ export default function NominationForm() {
 
     return (
         <div className="flex justify-center">
-        <div className="w-130 mx-auto mt-8 mb-8 p-8 file-card rounded">
+        <div className="w-130 mx-auto mt-8 mb-8 p-8 library-card">
             <h1 className="font-bold text-xl font-serif mb-6 text-center">{id === undefined ? "Add Nomination" : "Update Nomination"}</h1>
             <form onSubmit={handleSubmit} className="flex flex-col">
 
-                <div className="flex flex-col mb-6">
+                <div className="flex flex-col mb-6 library-card__field">
                     <label htmlFor="title" className="font-semibold font-serif mb-1">
                         Title <span className="text-red-600">*</span>
                     </label>
@@ -97,7 +97,7 @@ export default function NominationForm() {
                     />
                 </div>
 
-                <div className="flex flex-col mb-6">
+                <div className="flex flex-col mb-6 library-card__field">
                     <label htmlFor="author" className="font-semibold font-serif mb-1">
                         Author <span className="text-red-600">*</span>
                     </label>
@@ -111,7 +111,7 @@ export default function NominationForm() {
                     />
                 </div>
 
-                 <div className="flex flex-col mb-6">
+                 <div className="flex flex-col mb-6 library-card__field">
                     <label htmlFor="genre" className="font-semibold font-serif mb-1">
                         Genre <span className="text-red-600">*</span>
                     </label>

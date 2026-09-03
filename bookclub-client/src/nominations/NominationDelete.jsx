@@ -52,11 +52,11 @@ export default function NominationDelete() {
         <>
         <h1 className="font-bold text-4xl mb-6 mt-8 text-center w-full">DELETE NOMINATION</h1>
         <div className="flex justify-center">
-        <div className="w-96 mx-auto mt-8 mb-8 p-8 file-card">
+        <div className="w-96 mx-auto mt-8 mb-8 p-8 library-card">
 
-            <p className="nomination-delete-tab file-card--book">{nomination.title}</p>
-            <p className="nomination-delete-tab file-card--meeting">{nomination.author}</p>
-            <p className="nomination-delete-tab file-card--nomination">{nomination.genre}</p>
+            <p className="library-card__field">{nomination.title}</p>
+            <p className="library-card__field">{nomination.author}</p>
+            <p className="library-card__field">{nomination.genre}</p>
 
             <div className="px-1 pt-4 pb-2 flex justify-center">
                 <Link to="/nominations"

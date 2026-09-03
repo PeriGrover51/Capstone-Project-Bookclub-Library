@@ -10,7 +10,7 @@ export default function Nav() {
         <>
         <aside className="flex h-screen w-64 flex-col justify-between nav-paper-bg p-4 fixed border-r-6">
             <div>
-                <Link to="/" end className="mb-6 px-2 text-lg font-bold text-white">Book Club</Link>
+                <Link to="/" end className="mb-6 px-2 text-lg font-bold text-white uppercase">Bookclub Archives</Link>
                 
                 <nav className="flex flex-col gap-1 navbar">
                     <div className='navbar__shelf' />

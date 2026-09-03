@@ -77,11 +77,11 @@ export default function BookForm() {
 
     return (
         <div className="flex justify-center">
-        <div className="w-130 mt-8 mb-2 p-8 file-card rounded">
+        <div className="w-130 mt-8 mb-2 p-8 library-card rounded">
             <h1 className="font-bold text-xl font-serif mb-6 text-center mt-8">{id === undefined ? "Add Book" : "Update Book"}</h1>
             <form onSubmit={handleSubmit} className="flex flex-col">
 
-                <div className="flex flex-col mb-6">
+                <div className="flex flex-col mb-6 library-card__field">
                     <label htmlFor="title" className="font-semibold font-serif mb-1">
                         Title <span className="text-red-600">*</span>
                     </label>
@@ -95,7 +95,7 @@ export default function BookForm() {
                     />
                 </div>
 
-                 <div className="flex flex-col mb-6">
+                 <div className="flex flex-col mb-6 library-card__field">
                     <label htmlFor="author" className="font-semibold font-serif mb-1">
                         Author <span className="text-red-600">*</span>
                     </label>
@@ -109,7 +109,7 @@ export default function BookForm() {
                     />
                 </div>
 
-                <div className="flex flex-col mb-6">
+                <div className="flex flex-col mb-6 library-card__field">
                     <label htmlFor="genre" className="font-semibold font-serif mb-1">
                         Genre <span className="text-red-600">*</span>
                     </label>
@@ -123,7 +123,7 @@ export default function BookForm() {
                     />
                 </div>
 
-                <div className="flex flex-col mb-6">
+                <div className="flex flex-col mb-6 library-card__field">
                     <label htmlFor="whenRead" className="font-semibold font-serif mb-1">
                         When Read <span className="text-red-600">*</span>
                     </label>
@@ -137,7 +137,7 @@ export default function BookForm() {
                     />
                 </div>
 
-                <div className="flex flex-col mb-6">
+                <div className="flex flex-col mb-6 library-card__field">
                     <label htmlFor="link" className="font-semibold font-serif mb-1">
                         GoodReads Link
                     </label>
@@ -150,7 +150,7 @@ export default function BookForm() {
                     />
                 </div>
 
-                <div className="flex flex-col mb-6">
+                <div className="flex flex-col mb-6 library-card__field">
                     <label htmlFor="imgLink" className="font-semibold font-serif mb-1">
                         Cover Image Link
                     </label>

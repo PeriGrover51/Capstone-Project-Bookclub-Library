@@ -41,27 +41,27 @@ export default function LoginForm() {
     return (
         <>
             <div className="flex justify-center items-center h-screen">
-                <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
+                <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 library-card" onSubmit={handleSubmit}>
                     <h1 className="flex justify-center items-center mb-4">Bookclub Login</h1>
                     {errors.length > 0 && <ul>
                         {errors.map(error => <li key={error}>{error}</li>)}    
                     </ul>}
                     
-                    <div className="mb-4">
+                    <div className="mb-4  library-card__field">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username-input">Username: </label>
                         <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                              type="text" id="username-input" name="username" onChange={handleChange} value={user.username} />
                     </div>
         
-                    <div className="mb-6">
+                    <div className="mb-6 library-card__field">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password-input">Password: </label>
                         <input className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                             type="password" id="password-input" name="password" onChange={handleChange} value={user.password} />
                     </div>
         
                     <div className="flex items-center justify-between">
-                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                             type="submit">Log In!</button>
+                        <button className="add-button font-bold py-2 px-4 focus:outline-none focus:shadow-outline"
+                             type="submit">LOG IN</button>
                     </div>
                 </form>
             </div>    
