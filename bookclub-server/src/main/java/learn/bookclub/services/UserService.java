@@ -9,6 +9,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class UserService {
     private final int HASH_STRENGTH = 12;
@@ -70,5 +73,22 @@ public class UserService {
 
     public User findByUsername(String username) {
         return repository.findByUsername(username);
+    }
+
+    public Result<List<String>> findAll() {
+        Result<List<String>> result = new Result<>();
+
+        List<User> users = repository.findAll();
+        if (users == null) {
+            result.addErrorMessage("could not query the db", ResultType.INVALID);
+            return result;
+        }
+        List<String> usernames = new ArrayList<>();
+        for (User user : users) {
+            usernames.add(user.getUsername());
+        }
+
+        result.setpayload(usernames);
+        return result;
     }
 }
