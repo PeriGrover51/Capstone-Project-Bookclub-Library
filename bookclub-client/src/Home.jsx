@@ -7,7 +7,7 @@ export default function Home() {
         <div className="font-bold text-5xl p-6 taped-note w-1/2 mx-auto uppercase">The Bookclub Archives</div>
         <div className="mt-6 text-center flex">
             <div className="sticky-note-stack w-1/4 mt-8">
-                <div className="p-4 sticky-note sticky-note--yellow">Home of the Scifi and Fantasy Bookclub</div>
+                <div className="p-4 sticky-note sticky-note--yellow">Archive of Top-Secret Bookclub files</div>
                 <div className="p-4 sticky-note sticky-note--blue">Sign in to access classified documents</div>
                 <div className="p-4 sticky-note sticky-note--pink">{"("}No longer associated w/ CSU{")"}</div>
             </div>
