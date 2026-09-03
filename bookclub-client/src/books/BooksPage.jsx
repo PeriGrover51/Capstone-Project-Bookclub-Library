@@ -27,6 +27,9 @@ export default function BooksPage() {
     const [faves, setFaves] = useState([])
 
     useEffect(() => {
+        if (!user) {
+            return
+        }
         const doFetch = async () => {
             const response = await fetch("http://localhost:8080/api/favorites/mine", {
                 headers: {
@@ -47,6 +50,25 @@ export default function BooksPage() {
     const filteredBooks = books.filter(book => book.title.toLowerCase().includes(searchQuery.toLowerCase()))
 
 
+    //pagination functionality
+    const [currentPage, setCurrentPage] = useState(1)
+    const cardsPerPage = 6
+
+    const indexOfLastCard = currentPage * cardsPerPage
+    const indexOfFirstCard = indexOfLastCard - cardsPerPage
+    const currentCards = filteredBooks.slice(indexOfFirstCard, indexOfLastCard)
+
+    const totalPages = Math.ceil(filteredBooks.length / cardsPerPage)
+
+    const handleNext = () => {
+        if (currentPage < totalPages) setCurrentPage((prev) => prev + 1)
+    }
+
+    const handlePrev = () => {
+        if (currentPage > 1) setCurrentPage((prev) => prev - 1)
+    }
+
+
     
 
     return (
@@ -55,7 +77,13 @@ export default function BooksPage() {
             <h1 className="font-bold text-4xl pl-6 taped-note--header taped-note">LIBRARY</h1>
             <div className="ml-6 library-card">
                 <input className=" ml-6"
-                type="text" placeholder="search by title..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
+                type="text" placeholder="search by title..." value={searchQuery} 
+                onChange={(e) => {
+                    setSearchQuery(e.target.value);
+                    //add page-reset here
+                    setCurrentPage(1)
+                }
+            } />
             </div>
             {user &&
             <Link to="/books/add" 
@@ -65,7 +93,20 @@ export default function BooksPage() {
             }
         </div>
         <div className="flex flex-wrap m-2 gap-4">
-            {filteredBooks.map(book => <BookCard book={book} isFavorite={faves.some((fav) => fav.bookId === book.bookId)}/>)}
+            {currentCards.map(book => <BookCard book={book} isFavorite={faves.some((fav) => fav.bookId === book.bookId)}/>)}
+        </div>
+
+        <div className="sticky-note-stack w-full justify-center">
+            <button className="sticky-note sticky-note--blue flex justify-center items-center text-5xl disabled:invisible" 
+                onClick={handlePrev}
+                disabled={currentPage === 1}>
+                {"<"}-
+            </button>
+            <button className="sticky-note sticky-note--blue flex justify-center items-center text-5xl disabled:invisible" 
+                onClick={handleNext}
+                disabled={currentPage === totalPages}>
+                -{">"}
+            </button>
         </div>
         </>
     )

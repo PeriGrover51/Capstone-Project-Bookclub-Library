@@ -23,6 +23,24 @@ export default function FavoritesPage() {
         doFetch()
     }, [])
 
+    //pagination functionality
+    const [currentPage, setCurrentPage] = useState(1)
+    const cardsPerPage = 6
+
+    const indexOfLastCard = currentPage * cardsPerPage
+    const indexOfFirstCard = indexOfLastCard - cardsPerPage
+    const currentCards = faves.slice(indexOfFirstCard, indexOfLastCard)
+
+    const totalPages = Math.ceil(faves.length / cardsPerPage)
+
+    const handleNext = () => {
+        if (currentPage < totalPages) setCurrentPage((prev) => prev + 1)
+    }
+
+    const handlePrev = () => {
+        if (currentPage > 1) setCurrentPage((prev) => prev - 1)
+    }
+
     return (
             <>
             <div className="p-6 mb-2 flex items-center rounded">
@@ -32,7 +50,20 @@ export default function FavoritesPage() {
                 <p className="font-semibold text-2xl pl-6">You have no favorites. Click the star icon on any book to add it to favorites!</p>
             }
             <div className="flex flex-wrap m-2 gap-4">
-                {faves.map(fav => <BookCard book={fav} isFavorite={true}/>)}
+                {currentCards.map(fav => <BookCard book={fav} isFavorite={true}/>)}
+            </div>
+
+            <div className="sticky-note-stack w-full justify-center">
+            <button className="sticky-note sticky-note--blue flex justify-center items-center text-5xl disabled:invisible" 
+                onClick={handlePrev}
+                disabled={currentPage === 1}>
+                {"<"}-
+            </button>
+            <button className="sticky-note sticky-note--blue flex justify-center items-center text-5xl disabled:invisible" 
+                onClick={handleNext}
+                disabled={currentPage === totalPages}>
+                -{">"}
+            </button>
             </div>
             </>
         )

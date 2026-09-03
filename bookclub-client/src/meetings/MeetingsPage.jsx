@@ -51,6 +51,25 @@ export default function MeetingsPage() {
         setEndDate('')
     }
 
+
+    //pagination functionality
+    const [currentPage, setCurrentPage] = useState(1)
+    const cardsPerPage = 4
+
+    const indexOfLastCard = currentPage * cardsPerPage
+    const indexOfFirstCard = indexOfLastCard - cardsPerPage
+    const currentCards = filteredMeetings.slice(indexOfFirstCard, indexOfLastCard)
+
+    const totalPages = Math.ceil(filteredMeetings.length / cardsPerPage)
+
+    const handleNext = () => {
+        if (currentPage < totalPages) setCurrentPage((prev) => prev + 1)
+    }
+
+    const handlePrev = () => {
+        if (currentPage > 1) setCurrentPage((prev) => prev - 1)
+    }
+
     return (
         <>
         <div className="p-6 mb-2 flex items-center rounded">
@@ -59,7 +78,10 @@ export default function MeetingsPage() {
                 <label className="mr-4">
                 Start Date:
                 </label>
-                <input className="" type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
+                <input className="" type="date" value={startDate} onChange={(e) => {
+                    setStartDate(e.target.value);
+                    setCurrentPage(1);
+                }} />
             </div>
             <div className="ml-1 library-card">
                 <label className="mr-4">
@@ -76,7 +98,20 @@ export default function MeetingsPage() {
             }
         </div>
         <div className="flex flex-wrap m-2 gap-4">
-            {filteredMeetings.map(meeting => <MeetingCard meeting={meeting} />)}
+            {currentCards.map(meeting => <MeetingCard meeting={meeting} />)}
+        </div>
+
+        <div className="sticky-note-stack w-full justify-center">
+            <button className="sticky-note sticky-note--blue flex justify-center items-center text-5xl disabled:invisible" 
+                onClick={handlePrev}
+                disabled={currentPage === 1}>
+                {"<"}-
+            </button>
+            <button className="sticky-note sticky-note--blue flex justify-center items-center text-5xl disabled:invisible" 
+                onClick={handleNext}
+                disabled={currentPage === totalPages}>
+                -{">"}
+            </button>
         </div>
         </>
     )
