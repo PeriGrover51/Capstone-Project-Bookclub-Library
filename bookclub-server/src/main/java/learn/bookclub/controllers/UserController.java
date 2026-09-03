@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -47,5 +48,15 @@ public class UserController {
                         "username", user.getUsername()
                 )
         ));
+    }
+
+    @GetMapping
+    public ResponseEntity<?> findAll() {
+        Result<List<String>> result = userService.findAll();
+
+        if (!result.isSuccess()) {
+            return ErrorResponse.build(result);
+        }
+        return new ResponseEntity<>(result.getpayload(), HttpStatus.OK);
     }
 }

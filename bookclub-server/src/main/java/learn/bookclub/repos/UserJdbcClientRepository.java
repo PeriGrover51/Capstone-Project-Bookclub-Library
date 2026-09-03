@@ -7,6 +7,8 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class UserJdbcClientRepository implements UserRepository {
     private final JdbcClient jdbcClient;
@@ -41,5 +43,14 @@ public class UserJdbcClientRepository implements UserRepository {
         user.setUserId(keyHolder.getKey().intValue());
 
         return user;
+    }
+
+    @Override
+    public List<User> findAll() {
+        final String sql = "select * from user;";
+
+        return jdbcClient.sql(sql)
+                .query(User.class)
+                .list();
     }
 }
