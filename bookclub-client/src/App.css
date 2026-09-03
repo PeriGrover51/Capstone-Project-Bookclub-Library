@@ -456,9 +456,35 @@
   display: flex;
   flex-wrap: wrap;
 }
-.sticky-note-stack .sticky-note:nth-child(1) { transform: rotate(-4deg); z-index: 1; }
-.sticky-note-stack .sticky-note:nth-child(2) { transform: rotate(3deg); margin: -24px 0 0 10px; z-index: 2; }
-.sticky-note-stack .sticky-note:nth-child(3) { transform: rotate(-2deg); margin: 20px 0 0 30px; z-index: 3; }
+.sticky-note-stack .sticky-note:nth-child(3n+1) { transform: rotate(-4deg); z-index: 1; }
+.sticky-note-stack .sticky-note:nth-child(3n+2) { transform: rotate(3deg); margin: -24px 0 0 10px; z-index: 2; }
+.sticky-note-stack .sticky-note:nth-child(3n) { transform: rotate(-2deg); margin: 20px 0 0 30px; z-index: 3; }
+
+
+/* special sticky-note for members page */
+.member-sticky-note {
+  width: 80px;
+  min-height: 20px;
+  padding: 1rem;
+  font-family: var(--font-marker, "Permanent Marker", cursive);
+  color: var(--ink);
+  box-shadow: 2px 5px 10px rgba(40, 28, 16, 0.3);
+  position: relative;
+}
+
+.member-note-stack {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.member-note {
+  width: 180px;
+}
+
+.member-note-stack .member-note:nth-child(3n+1) { transform: rotate(-4deg); z-index: 1; }
+.member-note-stack .member-note:nth-child(3n+2) { transform: rotate(3deg); margin: -4px 0 0 10px; z-index: 2; }
+.member-note-stack .member-note:nth-child(3n) { transform: rotate(-1deg); margin: 20px 0 0 30px; z-index: 3; }
 
 
 
