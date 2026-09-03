@@ -22,8 +22,8 @@ export default function DeleteAll() {
 
 
     return (
-        <div className="max-w-lg mx-auto mt-8 mb-8 p-8 bg-stone-100 text-center font-bold text-red-900">
-            <div className="m-4 text-2xl">Clear All Nominations</div>
+        <div className="max-w-lg mx-auto mt-8 mb-8 p-8 library-card text-center font-bold text-red-900">
+            <div className="m-4 uppercase text-4xl">Clear All Nominations</div>
             <div className="m-2 text-xl">WARNING: This will clear ALL CURRENT NOMINATIONS. DO NOT USE before the current voting session has concluded.</div>
             <div className="m-2 text-lg">Are you sure you want to clear all nominations?</div>
             <div className="px-1 pt-4 pb-2 flex justify-center">

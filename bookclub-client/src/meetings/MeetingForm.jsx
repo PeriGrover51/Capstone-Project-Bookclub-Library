@@ -97,11 +97,11 @@ export default function MeetingForm() {
 
     return (
         <div className="flex justify-center">
-        <div className="w-120 mt-8 mb-8 p-8 border file-card rounded">
+        <div className="w-120 mt-8 mb-8 p-8 border library-card rounded">
             <h1 className="font-bold text-xl font-serif mb-6 text-center mt-5">{id === undefined ? "Add Meeting" : "Update Meeting"}</h1>
             <form onSubmit={handleSubmit} className="flex flex-col">
                 {/* PUT BOOK DROP DOWN HERE */}
-                <div className="flex flex-col mb-6">
+                <div className="flex flex-col mb-6 library-card__field">
                     <label htmlFor="book" className="font-semibold font-serif mb-1">
                         Meeting Book <span className="text-red-600">*</span>
                     </label>
@@ -118,7 +118,7 @@ export default function MeetingForm() {
                     </select>
                 </div>
 
-                <div className="flex flex-col mb-6">
+                <div className="flex flex-col mb-6 library-card__field">
                     <label htmlFor="meetingDate" className="font-semibold font-serif mb-1">
                         Meeting Date <span className="text-red-600">*</span>
                     </label>
@@ -132,7 +132,7 @@ export default function MeetingForm() {
                     />
                 </div>
 
-                <div className="flex flex-col mb-6">
+                <div className="flex flex-col mb-6 library-card__field">
                     <label htmlFor="readingGoal" className="font-semibold font-serif mb-1">
                         Reading Goal <span className="text-red-600">*</span>
                     </label>
@@ -146,7 +146,7 @@ export default function MeetingForm() {
                     />
                 </div>
 
-                 <div className="flex flex-col mb-6">
+                 <div className="flex flex-col mb-6 library-card__field">
                     <label htmlFor="meetingNotes" className="font-semibold font-serif mb-1">
                         Meeting Notes <span className="text-red-600">*</span>
                     </label>

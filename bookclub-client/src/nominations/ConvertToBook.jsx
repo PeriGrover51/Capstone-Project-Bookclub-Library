@@ -83,11 +83,11 @@ export default function ConvertToBook() {
     
     //form should be the same as BookForm?
     return (
-        <div className="max-w-lg mx-auto mt-8 mb-8 p-8 border border-black bg-[#dcbfa3] rounded">
+        <div className="max-w-lg mx-auto mt-8 mb-8 p-8 library-card">
             <h1 className="font-bold text-xl font-serif mb-6 text-center">Add Nomination To Library</h1>
             <form onSubmit={handleSubmit} className="flex flex-col">
 
-                <div className="flex flex-col mb-6">
+                <div className="flex flex-col mb-6 library-card__field">
                     <label htmlFor="title" className="font-semibold font-serif mb-1">
                         Title <span className="text-red-600">*</span>
                     </label>
@@ -101,7 +101,7 @@ export default function ConvertToBook() {
                     />
                 </div>
 
-                 <div className="flex flex-col mb-6">
+                 <div className="flex flex-col mb-6 library-card__field">
                     <label htmlFor="author" className="font-semibold font-serif mb-1">
                         Author <span className="text-red-600">*</span>
                     </label>
@@ -115,7 +115,7 @@ export default function ConvertToBook() {
                     />
                 </div>
 
-                <div className="flex flex-col mb-6">
+                <div className="flex flex-col mb-6 library-card__field">
                     <label htmlFor="genre" className="font-semibold font-serif mb-1">
                         Genre <span className="text-red-600">*</span>
                     </label>
@@ -129,7 +129,7 @@ export default function ConvertToBook() {
                     />
                 </div>
 
-                <div className="flex flex-col mb-6">
+                <div className="flex flex-col mb-6 library-card__field">
                     <label htmlFor="whenRead" className="font-semibold font-serif mb-1">
                         When Read <span className="text-red-600">*</span>
                     </label>
@@ -143,7 +143,7 @@ export default function ConvertToBook() {
                     />
                 </div>
 
-                <div className="flex flex-col mb-6">
+                <div className="flex flex-col mb-6 library-card__field">
                     <label htmlFor="link" className="font-semibold font-serif mb-1">
                         GoodReads Link
                     </label>
@@ -156,7 +156,7 @@ export default function ConvertToBook() {
                     />
                 </div>
 
-                <div className="flex flex-col mb-6">
+                <div className="flex flex-col mb-6 library-card__field">
                     <label htmlFor="imgLink" className="font-semibold font-serif mb-1">
                         Cover Image Link
                     </label>
@@ -171,7 +171,7 @@ export default function ConvertToBook() {
 
                 <button
                     type="submit"
-                    className="text-black text-lg bg-blue-500 hover:bg-blue-400 px-6 py-3 mt-4 rounded font-semibold font-serif w-full text-center">
+                    className="text-black text-lg add-button px-6 py-3 mt-4 rounded font-semibold font-serif w-full text-center">
                     Save Book
                 </button>
 
