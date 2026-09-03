@@ -22,10 +22,52 @@ export default function MeetingsPage() {
         doFetch()
     }, [])
 
+    //search by date range
+    const [startDate, setStartDate] = useState('')
+    const [endDate, setEndDate] = useState('')
+
+    const filteredMeetings = meetings.filter((meeting) => {
+        //if no dates selected, no filtering
+        if (!startDate && !endDate) {
+            return true
+        }
+
+        const meetingDate = new Date(meeting.meetingDate)
+        const start = startDate ? new Date(startDate) : null
+        const end = endDate ? new Date(endDate) : null
+
+        if (start && meetingDate < start) {
+            return false
+        }
+        if (end && meetingDate > end) { 
+            return false
+        }
+
+        return true
+    })
+
+    const clearDates = () => {
+        setStartDate('')
+        setEndDate('')
+    }
+
     return (
         <>
         <div className="p-6 mb-2 flex items-center rounded">
             <h1 className="font-bold text-4xl pl-6 taped-note--header taped-note">MEETINGS</h1>
+            <div className="ml-6 library-card">
+                <label className="mr-4">
+                Start Date:
+                </label>
+                <input className="" type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
+            </div>
+            <div className="ml-1 library-card">
+                <label className="mr-4">
+                    End Date:     
+                </label>
+                <input className="" type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
+            </div>
+            <button className="delete-button p-3" onClick={clearDates}>Clear Dates</button>
             {user &&
             <Link to="/meetings/add" 
                 className="text-black text-lg add-button px-6 py-3 m-4  ml-auto rounded font-semibold w-50 text-center">
@@ -34,7 +76,7 @@ export default function MeetingsPage() {
             }
         </div>
         <div className="flex flex-wrap m-2 gap-4">
-            {meetings.map(meeting => <MeetingCard meeting={meeting} />)}
+            {filteredMeetings.map(meeting => <MeetingCard meeting={meeting} />)}
         </div>
         </>
     )

@@ -53,8 +53,8 @@ export default function BooksPage() {
         <>
         <div className="p-6 mb-2 flex items-center rounded">
             <h1 className="font-bold text-4xl pl-6 taped-note--header taped-note">LIBRARY</h1>
-            <div className="ml-6">
-                <input className=" taped-note sticky-note--yellow ml-6"
+            <div className="ml-6 library-card">
+                <input className=" ml-6"
                 type="text" placeholder="search by title..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
             </div>
             {user &&
