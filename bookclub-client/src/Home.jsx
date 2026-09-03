@@ -3,8 +3,8 @@ import { useAuth } from "./AuthContext"
 export default function Home() {
     const { user } = useAuth()
     return (
-        <div className="w-full flex-none mt-6 text-center">
-            <div className="font-bold text-5xl p-6">Welcome to Book Club!</div>
+        <div className="w-full flex-none mt-6 text-center uppercase">
+            <div className="font-bold text-5xl p-6">The Bookclub Archives</div>
             <div className="p-4">This is the home of our little Science Fiction and Fantasy Bookclub.</div>
             <div className="p-4">This club began as a thriving offshoot of the official CSU Sci-fi and Fantasy Club.</div>
             <div className="p-4">During COVID, the bookclub was nearly wiped out, with most of the members leaving for... well, obvious reasons.</div>

@@ -8,7 +8,7 @@ export default function Nav() {
 
     return (
         <>
-        <aside className="flex h-screen w-64 flex-col justify-between nav-paper-bg p-4 fixed">
+        <aside className="flex h-screen w-64 flex-col justify-between nav-paper-bg p-4 fixed border-r-6 border-[#c19156] border-double uppercase">
             <div>
                 
                 <nav className="flex flex-col gap-1">
