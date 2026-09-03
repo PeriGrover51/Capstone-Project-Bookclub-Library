@@ -16,15 +16,20 @@ Stretch Goals (completed):
 - Voting / Nominations page has a 'Clear All' button that deletes all current nominations
 - Votes are hidden until a member clicks the 'Reveal Votes' button, which displays the votes for each nomination
 - Members can favorite or unfavorite books in the library
+- Members can view a list of their favorites in a separate page
+- Users can search / sort / filter books based on title
+- Users can filter meetings based on date range
+
+
 
 Additional Notes:
 - The library is allowed to hold duplicates as long as the date (when it was read) is different, since sometimes bookclub will re-read books.
 
 
 Stretch Goals (incomplete):
-- Members can view their favorites or other members' favorites
+- Members can view the favorites of other members
 - Members can rate books in the library
-- Users can search / sort / filter the library based on rating, keyword, date when read, etc.
+- Additional search bar functionality (search by genre, author, etc)
 - Members can post comments on books that are viewable by all users - comments are displayed when the book is clicked on
     - Display could be a sidebar, modal, etc...
 - library is paginated
