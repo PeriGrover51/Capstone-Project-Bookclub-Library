@@ -18,6 +18,7 @@ export default function BooksPage() {
             const sortedBooks = [...payload].sort((a, b) => new Date(b.whenRead) - new Date(a.whenRead));
 
             setBooks(sortedBooks)
+
         }
         doFetch()
     }, [])
@@ -40,12 +41,22 @@ export default function BooksPage() {
     }, [])
 
 
+    //search bar functionality
+    const [searchQuery, setSearchQuery] = useState('')
+
+    const filteredBooks = books.filter(book => book.title.toLowerCase().includes(searchQuery.toLowerCase()))
+
+
     
 
     return (
         <>
         <div className="p-6 mb-2 flex items-center rounded">
             <h1 className="font-bold text-4xl pl-6 taped-note--header taped-note">LIBRARY</h1>
+            <div className="ml-6 library-card">
+                <input className=" ml-6"
+                type="text" placeholder="search by title..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
+            </div>
             {user &&
             <Link to="/books/add" 
                 className="text-black text-lg add-button px-6 py-3 m-4  ml-auto rounded font-semibold w-50 text-center">
@@ -54,7 +65,7 @@ export default function BooksPage() {
             }
         </div>
         <div className="flex flex-wrap m-2 gap-4">
-            {books.map(book => <BookCard book={book} isFavorite={faves.some((fav) => fav.bookId === book.bookId)}/>)}
+            {filteredBooks.map(book => <BookCard book={book} isFavorite={faves.some((fav) => fav.bookId === book.bookId)}/>)}
         </div>
         </>
     )
