@@ -30,6 +30,4 @@ Stretch Goals (incomplete):
 - Members can view the favorites of other members
 - Members can rate books in the library
 - Additional search bar functionality (search by genre, author, etc)
-- Members can post comments on books that are viewable by all users - comments are displayed when the book is clicked on
-    - Display could be a sidebar, modal, etc...
 - library is paginated
