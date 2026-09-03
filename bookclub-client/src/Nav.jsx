@@ -8,11 +8,12 @@ export default function Nav() {
 
     return (
         <>
-        <aside className="flex h-screen w-64 flex-col justify-between nav-paper-bg p-4 fixed border-r-6 border-[#c19156] border-double uppercase">
+        <aside className="flex h-screen w-64 flex-col justify-between nav-paper-bg p-4 fixed border-r-6">
             <div>
+                <Link to="/" end className="mb-6 px-2 text-lg font-bold text-white">Book Club</Link>
                 
-                <nav className="flex flex-col gap-1">
-                    <Link to="/" end className="mb-6 px-2 text-lg font-bold text-white">Book Club</Link>
+                <nav className="flex flex-col gap-1 navbar">
+                    <div className='navbar__shelf' />
                     <NavItem to="/books">Books</NavItem>
                     <NavItem to="/meetings">Meetings</NavItem>
                     <NavItem to="/meetings/current">Current Meeting</NavItem>
