@@ -17,6 +17,7 @@ export default function Home() {
                 <div className="library-card__field">Nominations - classified</div>
                 <div className="library-card__field">Voting - classified</div>
                 <div className="library-card__field">Favorites - classified</div>
+                <div className="library-card__field">Members - Nonclassified</div>
                 <div className="library-card__field">Login - Membership required</div>
                 <div className="library-card__field">Signup - Gain Access</div>
             </div>

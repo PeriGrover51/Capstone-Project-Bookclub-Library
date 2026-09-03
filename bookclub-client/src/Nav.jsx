@@ -17,6 +17,7 @@ export default function Nav() {
                     <NavItem to="/books">Books</NavItem>
                     <NavItem to="/meetings">Meetings</NavItem>
                     <NavItem to="/meetings/current">Current Meeting</NavItem>
+                    <NavItem to="/members">Members</NavItem>
 
                     {user && (
                         <>
