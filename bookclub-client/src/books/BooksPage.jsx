@@ -58,7 +58,8 @@ export default function BooksPage() {
     const indexOfFirstCard = indexOfLastCard - cardsPerPage
     const currentCards = filteredBooks.slice(indexOfFirstCard, indexOfLastCard)
 
-    const totalPages = Math.ceil(filteredBooks.length / cardsPerPage)
+    //const totalPages = Math.ceil(filteredBooks.length / cardsPerPage)
+    const totalPages = filteredBooks.length > 0 ? Math.ceil(filteredBooks.length / cardsPerPage) : 1
 
     const handleNext = () => {
         if (currentPage < totalPages) setCurrentPage((prev) => prev + 1)

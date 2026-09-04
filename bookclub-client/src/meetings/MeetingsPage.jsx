@@ -60,7 +60,8 @@ export default function MeetingsPage() {
     const indexOfFirstCard = indexOfLastCard - cardsPerPage
     const currentCards = filteredMeetings.slice(indexOfFirstCard, indexOfLastCard)
 
-    const totalPages = Math.ceil(filteredMeetings.length / cardsPerPage)
+    //const totalPages = Math.ceil(filteredMeetings.length / cardsPerPage)
+    const totalPages = filteredMeetings.length > 0 ? Math.ceil(filteredMeetings.length / cardsPerPage) : 1
 
     const handleNext = () => {
         if (currentPage < totalPages) setCurrentPage((prev) => prev + 1)

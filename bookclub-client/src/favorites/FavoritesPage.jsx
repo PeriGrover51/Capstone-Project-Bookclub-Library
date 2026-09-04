@@ -31,7 +31,9 @@ export default function FavoritesPage() {
     const indexOfFirstCard = indexOfLastCard - cardsPerPage
     const currentCards = faves.slice(indexOfFirstCard, indexOfLastCard)
 
-    const totalPages = Math.ceil(faves.length / cardsPerPage)
+    //const totalPages = Math.ceil(faves.length / cardsPerPage)
+    const totalPages = faves.length > 0 ? Math.ceil(faves.length / cardsPerPage) : 1
+    
 
     const handleNext = () => {
         if (currentPage < totalPages) setCurrentPage((prev) => prev + 1)
@@ -40,6 +42,7 @@ export default function FavoritesPage() {
     const handlePrev = () => {
         if (currentPage > 1) setCurrentPage((prev) => prev - 1)
     }
+
 
     return (
             <>

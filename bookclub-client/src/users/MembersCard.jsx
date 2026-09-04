@@ -12,7 +12,7 @@ export default function MembersCard({ username, color }) {
             {user && 
             <div className=" flex items-center justify-center">
                 {user.username === username ? 
-                <Link to="favorites/mine" 
+                <Link to="/favorites/mine" 
                 className={` member-sticky-note sticky-note--${color}`}>
                     View Faves
                 </Link>
