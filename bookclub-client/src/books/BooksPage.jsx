@@ -106,7 +106,7 @@ export default function BooksPage() {
             {currentCards.map(book => <BookCard book={book} isFavorite={faves.some((fav) => fav.bookId === book.bookId)} otherUser={false} />)}
         </div>
 
-        <div className="sticky-note-stack w-full justify-center">
+        <div className="relative flex flex-wrap w-full justify-center">
             <button className="sticky-note sticky-note--blue flex justify-center items-center text-5xl disabled:invisible" 
                 onClick={handlePrev}
                 disabled={currentPage === 1}>
