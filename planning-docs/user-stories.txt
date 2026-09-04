@@ -19,7 +19,8 @@ Stretch Goals (completed):
 - Members can view a list of their favorites in a separate page
 - Users can search / sort / filter books based on title
 - Users can filter meetings based on date range
-
+- library is paginated
+- Members can view the favorites of other members
 
 
 Additional Notes:
@@ -27,7 +28,5 @@ Additional Notes:
 
 
 Stretch Goals (incomplete):
-- Members can view the favorites of other members
 - Members can rate books in the library
 - Additional search bar functionality (search by genre, author, etc)
-- library is paginated
