@@ -482,6 +482,16 @@
   color: var(--ink);
   box-shadow: 2px 5px 10px rgba(40, 28, 16, 0.3);
   position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.member-sticky-note:hover {
+  transform: rotate(2deg) scale(1.05);
+  box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.2);
+}
+.member-sticky-note:active {
+  transform: rotate(0deg) scale(0.98);
+  box-shadow: 1px 1px 3px rgba(40, 28, 16, 0.3);
 }
 
 .member-note-stack {
