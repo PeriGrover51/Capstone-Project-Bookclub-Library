@@ -12,12 +12,14 @@ export default function BooksPage() {
     useEffect(() => {
         const doFetch = async () => {
             const response = await fetch("http://localhost:8080/api/books")
-            const payload = await response.json()
 
-            //sort books by most recent 
-            const sortedBooks = [...payload].sort((a, b) => new Date(b.whenRead) - new Date(a.whenRead));
+            if (response.status >= 200 && response.status < 300) {
+                const payload = await response.json()
+                //sort books by most recent
+                const sortedBooks = [...payload].sort((a, b) => new Date(b.whenRead) - new Date(a.whenRead));
 
-            setBooks(sortedBooks)
+                setBooks(sortedBooks)
+            }
 
         }
         doFetch()
@@ -36,9 +38,11 @@ export default function BooksPage() {
                 Authorization: "Bearer " + token
             }
             })
-            const payload = await response.json()
 
-            setFaves(payload)
+            if (response.status >= 200 && response.status < 300) {
+                const payload = await response.json()
+                setFaves(payload)
+            }
         }
         doFetch()
     }, [])

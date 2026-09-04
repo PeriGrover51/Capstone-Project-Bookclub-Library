@@ -27,6 +27,7 @@ export default function BookCard({ book, isFavorite, otherUser }) {
                 Authorization: "Bearer " + token
             }
         })
+        
         if (response.status >= 200 && response.status < 300) { //post / delete succeeded = toggle isFave (star icon)
             setIsFave(!isFave)
         }

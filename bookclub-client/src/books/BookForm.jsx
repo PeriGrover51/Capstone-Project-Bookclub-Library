@@ -33,8 +33,11 @@ export default function BookForm() {
 
         const prepopulate = async function() { //else (id in url) == update existing book == fetch book info from db
             const response = await fetch("http://localhost:8080/api/books/" + id)
-            const payload = await response.json()
-            setBook(payload)
+            
+            if (response.status >= 200 && response.status < 300) {
+                const payload = await response.json()
+                setBook(payload)
+            }
         }
         prepopulate()
     }, [id])
