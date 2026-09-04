@@ -1,10 +1,16 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from './AuthContext';
 import NavItem from './NavItem';
 
 export default function Nav() {
     const { user } = useAuth()
     const { logout } = useAuth()
+    const navigate = useNavigate()
+
+    const handleLogout = () => {
+        logout()
+        navigate("/")
+    }
 
     return (
         <>
@@ -46,7 +52,7 @@ export default function Nav() {
                                 Signed in as <span className="font-medium text-white">{user.username}</span>
                             </p>
                             <button
-                                onClick={logout}
+                                onClick={handleLogout}
                                 className="mt-2 w-full rounded-md px-3 py-2 text-left text-m text-slate-100 hover:bg-[#cdb488] hover:text-white"
                             >
                                 Log out

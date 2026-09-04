@@ -17,7 +17,7 @@ Stretch Goals (completed):
 - Votes are hidden until a member clicks the 'Reveal Votes' button, which displays the votes for each nomination
 - Members can favorite or unfavorite books in the library
 - Members can view a list of their favorites in a separate page
-- Users can search / sort / filter books based on title
+- Users can search / sort / filter books based on keyword (title, author, or genre)
 - Users can filter meetings based on date range
 - library is paginated
 - Members can view the favorites of other members
@@ -29,4 +29,3 @@ Additional Notes:
 
 Stretch Goals (incomplete):
 - Members can rate books in the library
-- Additional search bar functionality (search by genre, author, etc)

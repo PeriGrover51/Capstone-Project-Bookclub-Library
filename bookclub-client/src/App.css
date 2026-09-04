@@ -445,6 +445,8 @@
   color: var(--ink);
   box-shadow: 2px 5px 10px rgba(40, 28, 16, 0.3);
   position: relative;
+  transform: rotate(-1deg);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .sticky-note--yellow { background: #f6e08a; }
 .sticky-note--pink   { background: #f3b6c0; }
@@ -460,6 +462,16 @@
 .sticky-note-stack .sticky-note:nth-child(3n+2) { transform: rotate(3deg); margin: -24px 0 0 10px; z-index: 2; }
 .sticky-note-stack .sticky-note:nth-child(3n) { transform: rotate(-2deg); margin: 20px 0 0 30px; z-index: 3; }
 
+/* add hover effect to sticky notes*/
+.sticky-note:hover {
+  transform: rotate(2deg) scale(1.05);
+  box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.2);
+}
+.sticky-note:active {
+  transform: rotate(0deg) scale(0.98);
+  box-shadow: 1px 1px 3px rgba(40, 28, 16, 0.3);
+}
+
 
 /* special sticky-note for members page */
 .member-sticky-note {
@@ -470,6 +482,16 @@
   color: var(--ink);
   box-shadow: 2px 5px 10px rgba(40, 28, 16, 0.3);
   position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.member-sticky-note:hover {
+  transform: rotate(2deg) scale(1.05);
+  box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.2);
+}
+.member-sticky-note:active {
+  transform: rotate(0deg) scale(0.98);
+  box-shadow: 1px 1px 3px rgba(40, 28, 16, 0.3);
 }
 
 .member-note-stack {
@@ -513,4 +535,10 @@
   border-bottom: 1px dashed var(--ink-soft);
   padding: 0.35rem 0;
   margin-bottom: 0.5rem;
+}
+
+/* add hover effect to sticky notes*/
+.sticky-note:hover {
+  left: -0.1rem;
+  transform: rotate(0deg) translateY(-2px);
 }

@@ -52,7 +52,11 @@ export default function BooksPage() {
     //search bar functionality
     const [searchQuery, setSearchQuery] = useState('')
 
-    const filteredBooks = books.filter(book => book.title.toLowerCase().includes(searchQuery.toLowerCase()))
+    const filteredBooks = books.filter(book => 
+        book.title.toLowerCase().includes(searchQuery.toLowerCase())
+        || book.author.toLowerCase().includes(searchQuery.toLowerCase())
+        || book.genre.toLowerCase().includes(searchQuery.toLowerCase())
+    )
 
 
     //pagination functionality
@@ -83,7 +87,7 @@ export default function BooksPage() {
             <h1 className="font-bold text-4xl pl-6 taped-note--header taped-note">LIBRARY</h1>
             <div className="ml-6 library-card">
                 <input className=" ml-6"
-                type="text" placeholder="search by title..." value={searchQuery} 
+                type="text" placeholder="search by keyword..." value={searchQuery} 
                 onChange={(e) => {
                     setSearchQuery(e.target.value);
                     //add page-reset here
@@ -102,7 +106,7 @@ export default function BooksPage() {
             {currentCards.map(book => <BookCard book={book} isFavorite={faves.some((fav) => fav.bookId === book.bookId)} otherUser={false} />)}
         </div>
 
-        <div className="sticky-note-stack w-full justify-center">
+        <div className="relative flex flex-wrap w-full justify-center">
             <button className="sticky-note sticky-note--blue flex justify-center items-center text-5xl disabled:invisible" 
                 onClick={handlePrev}
                 disabled={currentPage === 1}>

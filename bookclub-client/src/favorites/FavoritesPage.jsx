@@ -61,7 +61,7 @@ export default function FavoritesPage() {
                 {currentCards.map(fav => <BookCard book={fav} isFavorite={true} otherUser={false}/>)}
             </div>
 
-            <div className="sticky-note-stack w-full justify-center">
+            <div className="relative flex flex-wrap w-full justify-center">
             <button className="sticky-note sticky-note--blue flex justify-center items-center text-5xl disabled:invisible" 
                 onClick={handlePrev}
                 disabled={currentPage === 1}>
