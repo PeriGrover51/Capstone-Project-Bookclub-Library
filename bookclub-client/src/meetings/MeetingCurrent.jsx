@@ -9,8 +9,11 @@ export default function MeetingCurrent() {
     useEffect(() => {
         const fetchCurrent = async () => {
             const response = await fetch("http://localhost:8080/api/meetings/current")
-            const payload = await response.json()
-            setMeeting(payload)
+
+            if (response.status >= 200 && response.status < 300) { //success
+                const payload = await response.json()
+                setMeeting(payload)
+            }
         }
         fetchCurrent()
     }, [])
