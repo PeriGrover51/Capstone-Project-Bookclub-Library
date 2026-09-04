@@ -30,6 +30,18 @@ public class FavoriteController {
         return new ResponseEntity<>(result.getpayload(), HttpStatus.OK);
     }
 
+    //other favorites (not the current user's) - get from path
+    @GetMapping("/user/{username}")
+    public ResponseEntity<?> getUserFavorites(@PathVariable("username") String username) {
+        Result<List<Book>> result = service.findByUsername(username);
+
+        if (!result.isSuccess()) {
+            return ErrorResponse.build(result);
+        }
+        return new ResponseEntity<>(result.getpayload(), HttpStatus.OK);
+    }
+
+
     @PostMapping("/{id}")
     public ResponseEntity<?> addFavorite(@PathVariable("id") int id, Authentication authentication) {
         String requestingUsername = authentication.getName();
