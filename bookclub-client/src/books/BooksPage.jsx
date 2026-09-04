@@ -12,12 +12,15 @@ export default function BooksPage() {
     useEffect(() => {
         const doFetch = async () => {
             const response = await fetch("http://localhost:8080/api/books")
+
             const payload = await response.json()
 
-            //sort books by most recent 
-            const sortedBooks = [...payload].sort((a, b) => new Date(b.whenRead) - new Date(a.whenRead));
+            if (response.status >= 200 && response.status < 300) {
+                //sort books by most recent
+                const sortedBooks = [...payload].sort((a, b) => new Date(b.whenRead) - new Date(a.whenRead));
 
-            setBooks(sortedBooks)
+                setBooks(sortedBooks)
+            }
 
         }
         doFetch()
@@ -36,9 +39,11 @@ export default function BooksPage() {
                 Authorization: "Bearer " + token
             }
             })
-            const payload = await response.json()
 
-            setFaves(payload)
+            if (response.status >= 200 && response.status < 300) {
+                const payload = await response.json()
+                setFaves(payload)
+            }
         }
         doFetch()
     }, [])
@@ -58,7 +63,8 @@ export default function BooksPage() {
     const indexOfFirstCard = indexOfLastCard - cardsPerPage
     const currentCards = filteredBooks.slice(indexOfFirstCard, indexOfLastCard)
 
-    const totalPages = Math.ceil(filteredBooks.length / cardsPerPage)
+    //const totalPages = Math.ceil(filteredBooks.length / cardsPerPage)
+    const totalPages = filteredBooks.length > 0 ? Math.ceil(filteredBooks.length / cardsPerPage) : 1
 
     const handleNext = () => {
         if (currentPage < totalPages) setCurrentPage((prev) => prev + 1)
@@ -93,7 +99,7 @@ export default function BooksPage() {
             }
         </div>
         <div className="flex flex-wrap m-2 gap-4">
-            {currentCards.map(book => <BookCard book={book} isFavorite={faves.some((fav) => fav.bookId === book.bookId)}/>)}
+            {currentCards.map(book => <BookCard book={book} isFavorite={faves.some((fav) => fav.bookId === book.bookId)} otherUser={false} />)}
         </div>
 
         <div className="sticky-note-stack w-full justify-center">

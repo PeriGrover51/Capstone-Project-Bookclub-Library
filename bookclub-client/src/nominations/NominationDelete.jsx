@@ -32,6 +32,7 @@ export default function NominationDelete() {
             if (payload.user.username !== user.username) {
                 navigate("/nominations")
             }
+            
 
             setNomination(payload)
         }

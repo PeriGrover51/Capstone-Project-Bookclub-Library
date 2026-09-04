@@ -16,9 +16,14 @@ export default function FavoritesPage() {
                 Authorization: "Bearer " + token
             }
             })
+
+            
             const payload = await response.json()
 
-            setFaves(payload)
+            if (response.status >= 200 && response.status < 300) { //success
+                setFaves(payload)
+            }
+
         }
         doFetch()
     }, [])
@@ -31,7 +36,9 @@ export default function FavoritesPage() {
     const indexOfFirstCard = indexOfLastCard - cardsPerPage
     const currentCards = faves.slice(indexOfFirstCard, indexOfLastCard)
 
-    const totalPages = Math.ceil(faves.length / cardsPerPage)
+    //const totalPages = Math.ceil(faves.length / cardsPerPage)
+    const totalPages = faves.length > 0 ? Math.ceil(faves.length / cardsPerPage) : 1
+    
 
     const handleNext = () => {
         if (currentPage < totalPages) setCurrentPage((prev) => prev + 1)
@@ -40,6 +47,7 @@ export default function FavoritesPage() {
     const handlePrev = () => {
         if (currentPage > 1) setCurrentPage((prev) => prev - 1)
     }
+
 
     return (
             <>
@@ -50,7 +58,7 @@ export default function FavoritesPage() {
                 <p className="font-semibold text-2xl pl-6">You have no favorites. Click the star icon on any book to add it to favorites!</p>
             }
             <div className="flex flex-wrap m-2 gap-4">
-                {currentCards.map(fav => <BookCard book={fav} isFavorite={true}/>)}
+                {currentCards.map(fav => <BookCard book={fav} isFavorite={true} otherUser={false}/>)}
             </div>
 
             <div className="sticky-note-stack w-full justify-center">

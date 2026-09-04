@@ -34,8 +34,11 @@ export default function NominationForm() {
             } //get request for noms needs auth token
             })
             const payload = await response.json()
-            //we want to set the form with db nomination info for update, BUT keep the current user (not overwrite them)
-            setNomination({ ...payload, user})
+
+            if (response.status >= 200 && response.status < 300) {
+                //we want to set the form with db nomination info for update, BUT keep the current user (not overwrite them)
+                setNomination({ ...payload, user})
+            }
         }
         prepopulate()
     }, [id])

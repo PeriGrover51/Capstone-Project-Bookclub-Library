@@ -42,10 +42,12 @@ export default function ConvertToBook() {
             const payload = await response.json()
 
             //set book with nomination data, which leaves some fields empty
-            setBook(prevBook => ({
-                ...prevBook,
-                ...payload
-            }))
+            if (response.status >= 200 && response.status < 300) {
+                setBook(prevBook => ({
+                    ...prevBook,
+                    ...payload
+                }))
+            }
         }
         prepopulate()
     }, [id])

@@ -14,10 +14,12 @@ export default function MeetingsPage() {
             const response = await fetch("http://localhost:8080/api/meetings")
             const payload = await response.json()
 
-            //sort books by most recent 
-            const sortedMeetings = [...payload].sort((a, b) => new Date(b.meetingDate) - new Date(a.meetingDate));
+            if (response.status >= 200 && response.status < 300) { //success
+                //sort books by most recent
+                const sortedMeetings = [...payload].sort((a, b) => new Date(b.meetingDate) - new Date(a.meetingDate));
+                setMeetings(sortedMeetings)
+            }
 
-            setMeetings(sortedMeetings)
         }
         doFetch()
     }, [])
@@ -60,7 +62,8 @@ export default function MeetingsPage() {
     const indexOfFirstCard = indexOfLastCard - cardsPerPage
     const currentCards = filteredMeetings.slice(indexOfFirstCard, indexOfLastCard)
 
-    const totalPages = Math.ceil(filteredMeetings.length / cardsPerPage)
+    //const totalPages = Math.ceil(filteredMeetings.length / cardsPerPage)
+    const totalPages = filteredMeetings.length > 0 ? Math.ceil(filteredMeetings.length / cardsPerPage) : 1
 
     const handleNext = () => {
         if (currentPage < totalPages) setCurrentPage((prev) => prev + 1)
