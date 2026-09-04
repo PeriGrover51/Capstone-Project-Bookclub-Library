@@ -46,13 +46,16 @@ export default function OtherFavoritesPage() {
         if (currentPage > 1) setCurrentPage((prev) => prev - 1)
     }
 
+    //bug: you can interact with the favorites of other members- you can't delete them from that user's faves (thank god), but
+    //I think I want to disable / hide the stars on other user's favorites page.
+
     return (
                 <>
                 <div className="p-6 mb-2 flex items-center rounded">
-                    <h1 className="font-bold text-4xl pl-6 taped-note--header taped-note">My Favorites</h1>
+                    <h1 className="font-bold text-4xl pl-6 taped-note--header taped-note">{username}{"'"}s Favorites</h1>
                 </div>
                 {faves.length === 0 && 
-                    <p className="font-semibold text-2xl pl-6">You have no favorites. Click the star icon on any book to add it to favorites!</p>
+                    <p className="font-semibold text-2xl pl-6">{username} currently has no favorites.</p>
                 }
                 <div className="flex flex-wrap m-2 gap-4">
                     {currentCards.map(fav => <BookCard book={fav} isFavorite={true}/>)}
