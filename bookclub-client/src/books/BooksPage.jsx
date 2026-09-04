@@ -13,8 +13,9 @@ export default function BooksPage() {
         const doFetch = async () => {
             const response = await fetch("http://localhost:8080/api/books")
 
+            const payload = await response.json()
+
             if (response.status >= 200 && response.status < 300) {
-                const payload = await response.json()
                 //sort books by most recent
                 const sortedBooks = [...payload].sort((a, b) => new Date(b.whenRead) - new Date(a.whenRead));
 

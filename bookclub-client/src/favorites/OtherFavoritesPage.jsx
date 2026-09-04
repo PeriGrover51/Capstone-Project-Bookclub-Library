@@ -22,7 +22,10 @@ export default function OtherFavoritesPage() {
             })
             const payload = await response.json()
 
-            setFaves(payload)
+            if (response.status >= 200 && response.status < 300) { //success
+                setFaves(payload)
+            }
+
         }
         doFetch()
     }, [])
