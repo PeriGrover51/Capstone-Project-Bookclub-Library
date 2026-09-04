@@ -16,6 +16,7 @@ import ConvertToBook from "./nominations/ConvertToBook"
 import DeleteAll from "./nominations/DeleteAll"
 import FavoritesPage from "./favorites/FavoritesPage"
 import MembersPage from "./users/MembersPage"
+import OtherFavoritesPage from "./favorites/OtherFavoritesPage"
 
 export default function AppRouter() {
     const { user } = useAuth() //get user from context
@@ -92,6 +93,10 @@ export default function AppRouter() {
                 {
                     path: "favorites/mine",
                     element: user ? <FavoritesPage /> : <Navigate to="/"/>
+                },
+                {
+                    path: "favorites/user/:username",
+                    element: user ? <OtherFavoritesPage /> : <Navigate to="/"/>
                 },
                 {
                     path: "members",
