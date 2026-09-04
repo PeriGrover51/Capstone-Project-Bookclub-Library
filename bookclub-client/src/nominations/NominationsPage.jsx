@@ -18,7 +18,9 @@ export default function NominationsPage() {
             }
             })
             const payload = await response.json()
-            setNominations(payload)
+            if (response.status >= 200 && response.status < 300) {
+                setNominations(payload)
+            }
         }
         doFetch()
     }, [])

@@ -38,7 +38,9 @@ export default function NominationCard({ nomination, showScore }) {
             body: JSON.stringify({ score }),
         });
         const data = await response.json()
-        setMyScore(data.score) //update local score to reflect new vote immediately
+        if (response.status >= 200 && response.status < 300) {
+            setMyScore(data.score) //update local score to reflect new vote immediately
+        }
     }
 
     //score tally
@@ -54,8 +56,10 @@ export default function NominationCard({ nomination, showScore }) {
                 }
             })
             const votes = await response.json() //List<Vote> from backend
-            const sum = votes.reduce((accumulator, vote) => accumulator + vote.score, 0) //loops thru each vote, adds that vote's score to the accumulator (running total)
-            setTotalScore(sum)
+            if (response.status >= 200 && response.status < 300) {
+                const sum = votes.reduce((accumulator, vote) => accumulator + vote.score, 0) //loops thru each vote, adds that vote's score to the accumulator (running total)
+                setTotalScore(sum)
+            }
         }
 
         fetchAndCountVotes()
