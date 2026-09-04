@@ -94,7 +94,7 @@ export default function BooksPage() {
             }
         </div>
         <div className="flex flex-wrap m-2 gap-4">
-            {currentCards.map(book => <BookCard book={book} isFavorite={faves.some((fav) => fav.bookId === book.bookId)}/>)}
+            {currentCards.map(book => <BookCard book={book} isFavorite={faves.some((fav) => fav.bookId === book.bookId)} otherUser={false} />)}
         </div>
 
         <div className="sticky-note-stack w-full justify-center">

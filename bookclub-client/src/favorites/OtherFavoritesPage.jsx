@@ -58,7 +58,7 @@ export default function OtherFavoritesPage() {
                     <p className="font-semibold text-2xl pl-6">{username} currently has no favorites.</p>
                 }
                 <div className="flex flex-wrap m-2 gap-4">
-                    {currentCards.map(fav => <BookCard book={fav} isFavorite={true}/>)}
+                    {currentCards.map(fav => <BookCard book={fav} isFavorite={true} otherUser={true} />)}
                 </div>
     
                 <div className="sticky-note-stack w-full justify-center">
