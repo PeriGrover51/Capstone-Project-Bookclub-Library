@@ -8,6 +8,7 @@ export default function MeetingForm() {
     const { user } = useAuth()
     const { token } = useAuth() //this is the jwt token
     const navigate = useNavigate()
+    const API_URL = import.meta.env.VITE_API_URL
 
     //id undefined = add (POST), id defined = edit (PUT)
     const { id } = useParams()
@@ -19,7 +20,7 @@ export default function MeetingForm() {
 
     useEffect(() => {
         const doFetch = async () => {
-            const response = await fetch("http://localhost:8080/api/books")
+            const response = await fetch(API_URL + "/api/books")
             const payload = await response.json()
             setBooks(payload)
         }
@@ -45,7 +46,7 @@ export default function MeetingForm() {
         }
 
         const prepopulate = async function() { //else (id in url) == update existing meeting == fetch meeting info from db
-            const response = await fetch("http://localhost:8080/api/meetings/" + id)
+            const response = await fetch(API_URL + "/api/meetings/" + id)
             const payload = await response.json()
             setMeeting(payload)
         }
@@ -70,7 +71,7 @@ export default function MeetingForm() {
     async function handleSubmit(event) {
         event.preventDefault()
 
-        let url = "http://localhost:8080/api/meetings"
+        let url = API_URL + "/api/meetings"
         let method = "POST"
         if (id !== undefined) {
             url += "/" + id

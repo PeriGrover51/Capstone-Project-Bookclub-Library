@@ -6,6 +6,7 @@ export default function NominationForm() {
     const { user } = useAuth()
     const { token } = useAuth() //this is the jwt token
     const navigate = useNavigate()
+    const API_URL = import.meta.env.VITE_API_URL
 
     //id undefined = add (POST), id defined = edit (PUT)
     const { id } = useParams()
@@ -28,7 +29,7 @@ export default function NominationForm() {
         }
 
         const prepopulate = async function() { //else (id in url) == update existing nom == fetch nom info from db
-            const response = await fetch("http://localhost:8080/api/nominations/" + id, {
+            const response = await fetch(API_URL + "/api/nominations/" + id, {
                 headers: {
                 Authorization: "Bearer " + token
             } //get request for noms needs auth token
@@ -55,7 +56,7 @@ export default function NominationForm() {
     async function handleSubmit(event) {
         event.preventDefault()
 
-        let url = "http://localhost:8080/api/nominations"
+        let url = API_URL + "/api/nominations"
         let method = "POST"
         if (id !== undefined) {
             url += "/" + id

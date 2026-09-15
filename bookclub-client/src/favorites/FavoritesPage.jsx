@@ -6,12 +6,13 @@ import { useAuth } from '../AuthContext';
 export default function FavoritesPage() {
     const { user } = useAuth()
     const { token } = useAuth()
+    const API_URL = import.meta.env.VITE_API_URL
 
     const [faves, setFaves] = useState([])
 
     useEffect(() => {
         const doFetch = async () => {
-            const response = await fetch("http://localhost:8080/api/favorites/mine", {
+            const response = await fetch(API_URL + "/api/favorites/mine", {
                 headers: {
                 Authorization: "Bearer " + token
             }

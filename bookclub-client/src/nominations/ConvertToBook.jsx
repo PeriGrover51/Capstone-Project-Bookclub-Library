@@ -6,6 +6,7 @@ export default function ConvertToBook() {
 
     const { token } = useAuth()
     const navigate = useNavigate()
+    const API_URL = import.meta.env.VITE_API_URL
 
     const { id } = useParams() //use to fetch nomination data, if undefined navigate to home page
     if (id === undefined) {
@@ -34,7 +35,7 @@ export default function ConvertToBook() {
         }
 
         const prepopulate = async function() { //id in url == fetch nomination data and set values in initialBookForm
-            const response = await fetch("http://localhost:8080/api/nominations/" + id, {
+            const response = await fetch(API_URL + "/api/nominations/" + id, {
                 headers: {
                 Authorization: "Bearer " + token
             }
@@ -61,7 +62,7 @@ export default function ConvertToBook() {
     async function handleSubmit(event) {
         event.preventDefault()
 
-        const url = "http://localhost:8080/api/books"
+        const url = API_URL + "/api/books"
         const method = "POST"
 
         const payload = { ...book }

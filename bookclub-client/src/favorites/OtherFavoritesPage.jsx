@@ -8,6 +8,7 @@ export default function OtherFavoritesPage() {
 
     const { user } = useAuth()
     const { token } = useAuth()
+    const API_URL = import.meta.env.VITE_API_URL
 
     const { username } = useParams()
 
@@ -15,7 +16,7 @@ export default function OtherFavoritesPage() {
 
     useEffect(() => {
         const doFetch = async () => {
-            const response = await fetch("http://localhost:8080/api/favorites/user/" + username, {
+            const response = await fetch(API_URL + "/api/favorites/user/" + username, {
                 headers: {
                 Authorization: "Bearer " + token
             }

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 export default function BookCard({ book, isFavorite, otherUser }) {
     const { user } = useAuth()
     const { token } = useAuth()
+    const API_URL = import.meta.env.VITE_API_URL
 
     //necessary since the card manages its own toggle
     const [isFave, setIsFave] = useState(isFavorite)
@@ -15,7 +16,7 @@ export default function BookCard({ book, isFavorite, otherUser }) {
     async function setFavorite(event) {
         //update the favorites list
         //if isFave = true, do a delete, else do a post
-        const url = "http://localhost:8080/api/favorites/" + book.bookId
+        const url = API_URL + "/api/favorites/" + book.bookId
         let method = "POST"
         if (isFave) {
             method = "DELETE"

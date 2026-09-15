@@ -5,6 +5,7 @@ import { useAuth } from "../AuthContext"
 export default function SignupForm() {
 
     const navigate = useNavigate()
+    const API_URL = import.meta.env.VITE_API_URL
 
     const [user, setUser] = useState({
         username: "",
@@ -19,7 +20,7 @@ export default function SignupForm() {
     async function handleSubmit(event) {
         event.preventDefault()
 
-        const response = await fetch("http://localhost:8080/api/user/register", {
+        const response = await fetch(API_URL + "/api/user/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
