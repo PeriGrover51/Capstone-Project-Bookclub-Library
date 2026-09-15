@@ -6,12 +6,13 @@ import { useAuth } from '../AuthContext';
 
 export default function MeetingsPage() {
     const { user } = useAuth()
+    const API_URL = import.meta.env.VITE_API_URL
 
     const [meetings, setMeetings] = useState([])
 
     useEffect(() => {
         const doFetch = async () => {
-            const response = await fetch("http://localhost:8080/api/meetings")
+            const response = await fetch(API_URL + "/api/meetings")
             const payload = await response.json()
 
             if (response.status >= 200 && response.status < 300) { //success

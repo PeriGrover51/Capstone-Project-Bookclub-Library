@@ -9,7 +9,7 @@ export default function Home() {
             <div className="sticky-note-stack w-1/4 mt-8">
                 <div className="p-4 sticky-note sticky-note--yellow">Archive of Top-Secret Bookclub files</div>
                 <div className="p-4 sticky-note sticky-note--blue">Sign in to access classified documents</div>
-                <div className="p-4 sticky-note sticky-note--pink">{"("}No longer associated w/ CSU{")"}</div>
+                <div className="p-4 sticky-note sticky-note--pink">Join the Discord <a href="/" className="text-blue-500">Here!</a></div>
             </div>
             <div className="library-card ml-auto w-2/3 uppercase">
                 <div className="library-card__field">Books - semi-classified: view-only</div>

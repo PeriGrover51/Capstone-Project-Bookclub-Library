@@ -4,6 +4,7 @@ import { useAuth } from "../AuthContext"
 
 export default function LoginForm() {
     const navigate = useNavigate()
+    const API_URL = import.meta.env.VITE_API_URL
 
     const { login } = useAuth()
 
@@ -20,7 +21,7 @@ export default function LoginForm() {
     async function handleSubmit(event) {
         event.preventDefault()
 
-        const response = await fetch("http://localhost:8080/api/user/login", {
+        const response = await fetch(API_URL + "/api/user/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

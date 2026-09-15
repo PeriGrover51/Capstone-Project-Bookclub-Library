@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 export default function NominationCard({ nomination, showScore }) {
     const { token } = useAuth()
     const { user } = useAuth()
+    const API_URL = import.meta.env.VITE_API_URL
 
     //for holding the user's voting scores
     const [myScore, setMyScore] = useState(null)
@@ -12,7 +13,7 @@ export default function NominationCard({ nomination, showScore }) {
     //gets the user's vote for each nomination
     useEffect(() => {
         async function fetchMyVote() {
-            const response = await fetch(`http://localhost:8080/api/votes/nomination/${nomination.nominationId}/mine`, {
+            const response = await fetch(`${API_URL}/api/votes/nomination/${nomination.nominationId}/mine`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 },
@@ -29,7 +30,7 @@ export default function NominationCard({ nomination, showScore }) {
 
 
     async function castVote(score) {
-        const response = await fetch(`http://localhost:8080/api/votes/nomination/${nomination.nominationId}`, {
+        const response = await fetch(`${API_URL}/api/votes/nomination/${nomination.nominationId}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -50,7 +51,7 @@ export default function NominationCard({ nomination, showScore }) {
         if (!showScore) return //do not continue if showScore is false (no need to fetch and then keep hidden)
 
         async function fetchAndCountVotes() {
-            const response = await fetch(`http://localhost:8080/api/votes/nomination/${nomination.nominationId}`, {
+            const response = await fetch(`${API_URL}/api/votes/nomination/${nomination.nominationId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

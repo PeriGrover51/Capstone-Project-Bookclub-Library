@@ -7,6 +7,7 @@ export default function NominationDelete() {
 
     const { user } = useAuth()
     const { token } = useAuth()
+    const API_URL = import.meta.env.VITE_API_URL
 
     const { id } = useParams()
 
@@ -21,7 +22,7 @@ export default function NominationDelete() {
         }
 
         const prepopulate = async function() {
-            const response = await fetch("http://localhost:8080/api/nominations/" + id, {
+            const response = await fetch(API_URL + "/api/nominations/" + id, {
                 headers: {
                 Authorization: "Bearer " + token
             } //get request for noms needs auth token
@@ -40,7 +41,7 @@ export default function NominationDelete() {
     }, [id])
 
     async function handleDelete() {
-        await fetch("http://localhost:8080/api/nominations/" + id, {
+        await fetch(API_URL + "/api/nominations/" + id, {
             method: "DELETE",
             headers: {
                 Authorization: "Bearer " + token

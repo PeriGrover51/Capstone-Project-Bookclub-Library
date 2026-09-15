@@ -7,11 +7,12 @@ export default function DeleteAll() {
 
     const { user } = useAuth()
     const { token } = useAuth()
+    const API_URL = import.meta.env.VITE_API_URL
 
     const navigate = useNavigate()
 
     async function handleDelete() {
-        await fetch("http://localhost:8080/api/nominations", {
+        await fetch(API_URL + "/api/nominations", {
             method: "DELETE",
             headers: {
                 Authorization: "Bearer " + token

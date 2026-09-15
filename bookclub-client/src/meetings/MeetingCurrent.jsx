@@ -5,10 +5,11 @@ import { Link } from "react-router-dom"
 export default function MeetingCurrent() {
 
     const [meeting, setMeeting] = useState(null)
+    const API_URL = import.meta.env.VITE_API_URL
 
     useEffect(() => {
         const fetchCurrent = async () => {
-            const response = await fetch("http://localhost:8080/api/meetings/current")
+            const response = await fetch(API_URL + "/api/meetings/current")
 
             if (response.status >= 200 && response.status < 300) { //success
                 const payload = await response.json()

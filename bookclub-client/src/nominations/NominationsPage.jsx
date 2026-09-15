@@ -8,11 +8,12 @@ export default function NominationsPage() {
 
     const { token } = useAuth()
     const [nominations, setNominations] = useState([])
+    const API_URL = import.meta.env.VITE_API_URL
 
     //for this page, we need to send the auth token in order to fetch nominations
     useEffect(() => {
         const doFetch = async () => {
-            const response = await fetch("http://localhost:8080/api/nominations", {
+            const response = await fetch(API_URL + "/api/nominations", {
             headers: {
                 Authorization: "Bearer " + token
             }

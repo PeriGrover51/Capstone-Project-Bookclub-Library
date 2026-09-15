@@ -6,6 +6,7 @@ import MembersCard from "./MembersCard";
 export default function MembersPage() {
     const { user } = useAuth()
     const { token } = useAuth()
+    const API_URL = import.meta.env.VITE_API_URL
 
     const [members, setMembers] = useState([])
 
@@ -13,7 +14,7 @@ export default function MembersPage() {
 
     useEffect(() => {
         const doFetch = async () => {
-            const response = await fetch("http://localhost:8080/api/user")
+            const response = await fetch(API_URL + "/api/user")
             const payload = await response.json()
 
             //sort members alphabetically? 

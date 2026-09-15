@@ -122,16 +122,16 @@
   color: #fff;
   text-decoration: none;
   padding: 0.5rem 1rem;
-  background: var(--tab-color, var(--accent-book));
+  background: var(--tab-color, var(--accent-nomination));
   box-shadow: 3px 2px 6px rgba(40, 28, 16, 0.3);
   transform: rotate(var(--tab-rotate, -1.5deg));
   transition: left 0.18s ease, box-shadow 0.18s ease;
   margin-top: 1rem;
 }
 
-.nav-item:nth-child(3n) { --tab-rotate: 1deg; --tab-color: var(--accent-meeting); }
-.nav-item:nth-child(3n + 1) { --tab-rotate: -1.5deg; --tab-color: var(--accent-book); }
-.nav-item:nth-child(3n + 2) { --tab-rotate: 0.5deg; --tab-color: var(--accent-nomination); }
+.nav-item:nth-child(3n) { --tab-rotate: 1deg;  }
+.nav-item:nth-child(3n + 1) { --tab-rotate: -1.5deg;  }
+.nav-item:nth-child(3n + 2) { --tab-rotate: 0.5deg;  }
 
 .nav-item:hover {
   left: -0.1rem;            /* partial peek-out on hover */
